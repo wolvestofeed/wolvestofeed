@@ -1,65 +1,140 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { Flame, Wind } from "lucide-react";
 
 export default function Home() {
+  const [hoveredSide, setHoveredSide] = useState<"left" | "right" | null>(null);
+
+  // Background transition logic
+  let leftOverlay = "bg-transparent";
+  let rightOverlay = "bg-transparent";
+
+  if (hoveredSide === "left") {
+    leftOverlay = "bg-black/20 backdrop-blur-sm";
+    rightOverlay = "bg-black/90";
+  } else if (hoveredSide === "right") {
+    rightOverlay = "bg-black/20 backdrop-blur-sm";
+    leftOverlay = "bg-black/90";
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex flex-col min-h-screen bg-obsidian">
+
+      {/* Dedicated Tagline Banner - Resized for visibility */}
+      <div className="w-full py-6 md:py-10 border-b border-white/5 flex flex-col items-center justify-center relative z-20 bg-obsidian">
+        <h2 className="font-cinzel text-xl md:text-3xl lg:text-4xl text-aged-gold tracking-[0.1em] md:tracking-[0.2em] text-center px-8 leading-tight uppercase drop-shadow-2xl">
+          Integrated Wellness Collective <br className="hidden md:block" />
+          <span className="text-white/80 text-base md:text-xl font-bold mt-4 block tracking-[0.3em] md:tracking-[0.5em]">
+            For Men Over 50
+          </span>
+        </h2>
+      </div>
+
+      {/* Interactive Split Screen Area */}
+      <div className="relative min-h-[calc(100vh-240px)] w-full overflow-hidden flex flex-col flex-grow">
+        {/* Background Poster layer */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/wolves to feed poster 1.png"
+            alt="Wolves To Feed Poster"
+            fill
+            priority
+            className="object-contain opacity-60 mix-blend-lighten"
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        {/* Split Screen interactable areas */}
+        <div className="flex-grow flex w-full relative z-10">
+
+          {/* Left Side: Shadow Wolf / Smoke */}
+          <div
+            className={`w-1/2 h-full flex flex-col items-center justify-center cursor-pointer transition-all duration-700 ease-in-out ${leftOverlay}`}
+            onMouseEnter={() => setHoveredSide("left")}
+            onMouseLeave={() => setHoveredSide(null)}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <div className="relative w-full h-full flex flex-col items-center justify-center">
+              {/* Beckoning Icon - Enhanced Illumination */}
+              <AnimatePresence>
+                {!hoveredSide && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 0.8, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
+                    className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+                  >
+                    <h2 className="font-cinzel text-3xl md:text-5xl text-gray-300 uppercase tracking-widest mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">Shadow</h2>
+                    <Wind className="w-8 h-8 md:w-12 md:h-12 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Revealable Content */}
+              <div className={`text-center space-y-6 transition-all duration-700 max-w-md px-8 py-12 rounded-lg
+                ${hoveredSide === "left" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"}`}
+              >
+                <h2 className="font-cinzel text-4xl md:text-6xl text-shadow-red smoke-effect tracking-wider drop-shadow-lg">
+                  Shadow
+                </h2>
+                <p className="font-tahoma text-xl text-gray-300 drop-shadow-md leading-relaxed">
+                  Embrace the untamed self. Navigate the distractions and confront your raw nature in the smoke.
+                </p>
+                <Link href="/the-pack" className="inline-block mt-8 px-10 py-4 border border-[#b0c4b0] text-[#b0c4b0] hover:bg-[#b0c4b0]/10 transition-colors font-tahoma uppercase tracking-widest text-sm smoke-effect backdrop-blur-md">
+                  Enter The Smoke
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Center Divider line */}
+          <div className="absolute left-1/2 top-10 bottom-10 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent -translate-x-1/2 z-10 pointer-events-none" />
+
+          {/* Right Side: Spirit Wolf / Ember */}
+          <div
+            className={`w-1/2 h-full flex flex-col items-center justify-center cursor-pointer transition-all duration-700 ease-in-out ${rightOverlay}`}
+            onMouseEnter={() => setHoveredSide("right")}
+            onMouseLeave={() => setHoveredSide(null)}
           >
-            Documentation
-          </a>
+            <div className="relative w-full h-full flex flex-col items-center justify-center">
+              {/* Beckoning Icon - Enhanced Illumination */}
+              <AnimatePresence>
+                {!hoveredSide && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 0.8, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ repeat: Infinity, duration: 1.5, repeatType: "mirror" }}
+                    className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+                  >
+                    <h2 className="font-cinzel text-3xl md:text-5xl text-fire-orange uppercase tracking-widest mb-4 drop-shadow-[0_0_15px_rgba(226,88,34,0.6)]">Spirit</h2>
+                    <Flame className="w-8 h-8 md:w-12 md:h-12 text-fire-orange drop-shadow-[0_0_20px_rgba(226,88,34,0.8)]" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Revealable Content */}
+              <div className={`text-center space-y-6 transition-all duration-700 max-w-md px-8 py-12 rounded-lg
+                ${hoveredSide === "right" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"}`}
+              >
+                <h2 className="font-cinzel text-4xl md:text-6xl text-spirit-blue ember-effect tracking-wider drop-shadow-lg">
+                  Spirit
+                </h2>
+                <p className="font-tahoma text-xl text-blue-50 drop-shadow-md leading-relaxed">
+                  Ignite creation. Integrate the self through discipline, focus, and illumination required to walk your path.
+                </p>
+                <Link href="/podcast" className="inline-block mt-8 px-10 py-4 bg-fire-orange/20 border border-fire-orange text-white hover:bg-fire-orange transition-colors font-tahoma uppercase tracking-widest text-sm ember-effect backdrop-blur-md">
+                  Seek The Fire
+                </Link>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </main>
+      </div>
     </div>
   );
 }

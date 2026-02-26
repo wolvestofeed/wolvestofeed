@@ -1,0 +1,153 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+
+export default function PublishingPage() {
+    const [activeBook, setActiveBook] = useState<"book1" | "book2">("book1");
+    const [isFlipped, setFlipped] = useState(false);
+
+    const books = {
+        book1: {
+            title: "On the Edge of Greatness",
+            subtitle: "The Master Text",
+            frontCover: "/on-the-edge-front-v3.jpg",
+            backCover: "https://placehold.co/400x600/D4AF37/1a1a1a.png?text=Back+Cover",
+            excerpt: "The shadow is not an enemy to be vanquished; it is an untamed force waiting for a master. In these pages, we explore the duality of the human condition... (This is a scrollable excerpt. To fully step into greatness, one must first be willing to stand on the edge where the known ends and the vast unknown wilderness begins. This requires immense courage, discipline, and the willingness to let the false self burn in the fire of truth...)",
+            price: "$24.99"
+        },
+        book2: {
+            title: "Edges of Greatness Workbook",
+            subtitle: "The Implementation Guide",
+            frontCover: "/workbook-front-v1.jpg",
+            backCover: "https://placehold.co/400x600/E25822/1a1a1a.png?text=Back+Cover",
+            excerpt: "Action is the bridge between philosophy and reality. Use this workbook to document your daily descent into the shadow and ascent into the spirit... (Scrollable content. Week 1: Identifying the False Self. Week 2: Building the Fire. Week 3: Forging Discourse without distraction...)",
+            price: "$19.99"
+        }
+    };
+
+    const currentBook = books[activeBook];
+
+    return (
+        <div className="min-h-screen bg-obsidian text-white pt-12 pb-24">
+            <div className="max-w-6xl mx-auto px-8">
+
+                {/* Brand Header Section */}
+                <section className="mb-32 flex flex-col items-center text-center">
+                    <div className="relative w-48 h-48 mb-8 opacity-90 hover:opacity-100 transition-opacity">
+                        <Image
+                            src="/WTF Pub Mark white.png"
+                            alt="Wolves To Feed Publishing Imprint"
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
+                    <h1 className="font-cinzel text-4xl md:text-5xl lg:text-7xl text-white mb-8 tracking-tighter ember-effect">
+                        Wolves To Feed Publishing
+                    </h1>
+                    <div className="w-24 h-1 bg-gradient-to-r from-transparent via-aged-gold to-transparent mb-12"></div>
+                    <p className="font-tahoma text-xl md:text-2xl text-gray-400 max-w-4xl leading-relaxed italic">
+                        "The story you tell yourself is the territory you inhabit. We publish the maps for those brave enough to redraw their borders."
+                    </p>
+                </section>
+
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-32" />
+
+                {/* Existing Library Header */}
+                <div className="text-center mb-20 max-w-3xl mx-auto">
+                    <h2 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-6 smoke-effect uppercase tracking-widest">The Library</h2>
+                    <p className="font-tahoma text-xl text-gray-300 leading-relaxed">
+                        Words are seeds. Plant them deeply. Explore our foundational texts designed to challenge your limits and guide you through the wilderness of the self.
+                    </p>
+                </div>
+
+                <div className="flex flex-col lg:flex-row gap-16 relative">
+
+                    {/* Bookshelf Selection */}
+                    <div className="w-full lg:w-1/3 border-r border-white/10 pr-8">
+                        <h2 className="font-cinzel text-2xl text-gray-100 mb-8 border-b border-white/10 pb-4">Featured Titles</h2>
+                        <div className="space-y-6">
+                            <button
+                                onClick={() => { setActiveBook("book1"); setFlipped(false); }}
+                                className={`w-full text-left p-6 rounded-lg border transition-all duration-300 ${activeBook === "book1" ? "bg-gray-900 border-aged-gold shadow-[0_4px_20px_rgba(212,175,55,0.1)]" : "bg-black/50 border-white/5 hover:border-white/20"}`}
+                            >
+                                <div className="font-cinzel text-xl text-white mb-2">{books.book1.title}</div>
+                                <div className="font-tahoma text-sm text-aged-gold uppercase tracking-wider">{books.book1.subtitle}</div>
+                            </button>
+
+                            <button
+                                onClick={() => { setActiveBook("book2"); setFlipped(false); }}
+                                className={`w-full text-left p-6 rounded-lg border transition-all duration-300 ${activeBook === "book2" ? "bg-gray-900 border-fire-orange shadow-[0_4px_20px_rgba(226,88,34,0.1)]" : "bg-black/50 border-white/5 hover:border-white/20"}`}
+                            >
+                                <div className="font-cinzel text-xl text-white mb-2">{books.book2.title}</div>
+                                <div className="font-tahoma text-sm text-fire-orange uppercase tracking-wider">{books.book2.subtitle}</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Interactive Frame & Excerpt */}
+                    <div className="w-full lg:w-2/3 flex flex-col md:flex-row gap-12">
+
+                        {/* Interactive Book Cover Component */}
+                        <div className="w-full md:w-1/2 flex flex-col items-center">
+                            {/* 3D Flip Container */}
+                            <div
+                                className="relative w-full aspect-[2/3] max-w-[300px] [perspective:1000px] cursor-pointer group"
+                                onClick={() => setFlipped(!isFlipped)}
+                            >
+                                <div className={`w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${isFlipped ? "[transform:rotateY(180deg)]" : ""}`}>
+
+                                    {/* Front Cover */}
+                                    <div className="absolute w-full h-full [backface-visibility:hidden] rounded shadow-2xl overflow-hidden border border-white/10 group-hover:border-white/30 transition-colors">
+                                        <Image src={currentBook.frontCover} alt="Front Cover" fill className="object-cover" />
+                                    </div>
+
+                                    {/* Back Cover */}
+                                    <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded shadow-2xl overflow-hidden border border-white/10 group-hover:border-white/30 transition-colors">
+                                        <Image src={currentBook.backCover} alt="Back Cover" fill className="object-cover" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <p className="font-tahoma text-sm text-gray-500 mt-6 italic bg-white/5 px-4 py-1 rounded-full border border-white/10">Click book to view {isFlipped ? "front" : "back"} cover</p>
+                        </div>
+
+                        {/* Book Details & Excerpt Box */}
+                        <div className="w-full md:w-1/2 flex flex-col h-full">
+                            <h3 className="font-cinzel text-3xl text-white mb-2">{currentBook.title}</h3>
+                            <p className="font-tahoma text-xl text-gray-400 mb-8">{currentBook.subtitle}</p>
+
+                            <div className="flex-grow bg-black/60 border border-white/10 rounded-lg p-6 mb-8 relative">
+                                <div className="absolute top-0 left-0 w-full h-6 bg-gradient-to-b from-black/80 to-transparent pointer-events-none rounded-t-lg z-10" />
+                                <h4 className="font-cinzel text-sm text-aged-gold mb-4 uppercase tracking-widest border-b border-white/10 pb-2">Read an Excerpt</h4>
+                                <div className="h-48 overflow-y-auto pr-4 font-tahoma text-gray-300 leading-relaxed text-sm scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                                    {currentBook.excerpt}
+                                    <br /><br />
+                                    (The text continues... testing scrolling. Wolves represent the duality...)
+                                    <br /><br />
+                                    (Another paragraph detailing the shadow work required to read this book. Only by diving deep into the prose can one emerge reborn in the ember...)
+                                </div>
+                                <div className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none rounded-b-lg z-10" />
+                            </div>
+
+                            {/* Stripe Checkout Mock UI */}
+                            <div className="bg-gray-900 border border-white/20 p-6 rounded-lg flex items-center justify-between">
+                                <span className="font-cinzel text-2xl text-white">{currentBook.price}</span>
+                                <button className="bg-aged-gold hover:bg-yellow-500 text-black font-tahoma uppercase tracking-widest px-8 py-3 transition-colors border-2 border-transparent hover:border-white shadow-lg flex items-center gap-2">
+                                    <span>Purchase</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+                                        <path fillRule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    );
+}

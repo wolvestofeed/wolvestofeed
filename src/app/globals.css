@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-obsidian: #000000;
+  --color-aged-gold: #D4AF37;
+  --color-fire-orange: #E25822;
+  --color-shadow-red: #ff4d00;
+  --color-spirit-blue: #70d6ff;
+
+  --font-cinzel: var(--font-cinzel), serif;
+  --font-tahoma: Tahoma, Verdana, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  body {
+    background-color: var(--color-obsidian);
+    color: #ffffff;
+    font-family: var(--font-tahoma);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1,
+  h2 {
+    font-family: var(--font-cinzel);
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-tahoma);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .smoke-effect {
+    transition: all 0.5s ease-in-out;
+  }
+
+  .smoke-effect:hover {
+    text-shadow: 0 4px 15px rgba(80, 100, 90, 0.6);
+    box-shadow: 0 8px 25px rgba(50, 60, 50, 0.3);
+    /* removed color override */
+  }
+
+  .ember-effect {
+    transition: all 0.5s ease-in-out;
+  }
+
+  .ember-effect:hover {
+    text-shadow: 0 0 15px rgba(100, 200, 255, 0.8), 0 0 30px rgba(100, 200, 255, 0.4);
+    box-shadow: 0 0 20px rgba(50, 150, 255, 0.5);
+    /* removed color override */
+  }
 }
