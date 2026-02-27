@@ -148,13 +148,26 @@ export default function PublishingPage() {
                             </div>
 
                             {/* Stripe Checkout */}
-                            <div className="bg-gray-900 border border-white/20 p-6 rounded-lg flex items-center justify-between gap-4">
-                                <span className="font-cinzel text-2xl text-white shrink-0">{currentBook.price}</span>
-                                <CheckoutButton
-                                    priceId={currentBook.priceId}
-                                    label="Purchase"
-                                    className="bg-aged-gold hover:bg-yellow-500 text-black border-2 border-transparent hover:border-white shadow-lg"
-                                />
+                            <div className="space-y-4">
+                                <div className="bg-gray-900 border border-white/20 p-6 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+                                    <span className="font-cinzel text-2xl text-white shrink-0">{currentBook.price}</span>
+                                    <CheckoutButton
+                                        priceId={currentBook.priceId}
+                                        label="Pre-Order Now"
+                                        className="bg-aged-gold hover:bg-yellow-500 text-black border-2 border-transparent hover:border-white shadow-lg w-full sm:w-auto"
+                                    />
+                                </div>
+                                
+                                {/* Pre-Order Notice */}
+                                <div className="bg-black/40 border border-fire-orange/30 p-4 rounded-lg flex items-start gap-3">
+                                    <span className="text-fire-orange text-xl mt-0.5" aria-hidden="true">🔥</span>
+                                    <div>
+                                        <h5 className="font-cinzel text-fire-orange text-sm font-bold tracking-wider uppercase mb-1">Pre-Order Phase</h5>
+                                        <p className="font-tahoma text-gray-400 text-xs leading-relaxed">
+                                            Physical editions are currently at the printer. All orders placed today will ship in March.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
