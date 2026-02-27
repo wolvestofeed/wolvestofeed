@@ -142,7 +142,7 @@ export default function ThePackPage() {
                     <div className="text-center mb-16">
                         <h2 className="font-cinzel text-4xl md:text-5xl text-fire-orange mb-6 ember-effect">The Campfire</h2>
                         <p className="font-tahoma text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                            Our mission is to build a resilient community of wellness practitioners and brothers. Here we share stories, forge connections, and host live gatherings to continually feed the spirit.
+                            Our mission is to build a resilient community of wellness practitioners and brothers. Here we share stories, nurture connections, and host live gatherings to continually feed the spirit.
                         </p>
                     </div>
 

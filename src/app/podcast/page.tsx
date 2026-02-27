@@ -89,7 +89,7 @@ export default function PodcastPage() {
 
                             <div className="w-12 h-px bg-gradient-to-r from-aged-gold to-transparent my-8" />
 
-                            <p className="font-tahoma text-lg leading-relaxed text-gray-400">
+                            <p className="font-tahoma text-xl leading-relaxed text-gray-100 font-light">
                                 You’ll hear us discuss wellness practices through the <span className="text-white/80">body, mind, heart, spirit, relationships, and legacy</span>, weave in studies, teachers, and traditions when they genuinely help, and then show how we actually embody and integrate those insights in real, modern life.
                             </p>
                         </div>
@@ -100,7 +100,7 @@ export default function PodcastPage() {
             {/* Video Series Sections */}
             <div className={`transition-all duration-700 relative z-30 mb-24 px-8 ${focusMode ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
                 <div className="max-w-7xl mx-auto space-y-32">
-                    
+
                     {/* Series 1: Fire and Vice */}
                     <section>
                         <div className="mb-12 border-l-4 border-fire-orange pl-8 py-2">
