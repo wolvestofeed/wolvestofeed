@@ -1,0 +1,27 @@
+
+> wolves-to-feed-website@0.1.0 lint
+> eslint
+
+
+/Users/robertbogatin/Documents/Wolves To Feed/WTF website/src/app/coaching/page.tsx
+   5:10  warning  'motion' is defined but never used                     @typescript-eslint/no-unused-vars
+   5:18  warning  'AnimatePresence' is defined but never used            @typescript-eslint/no-unused-vars
+   6:10  warning  'ChevronDown' is defined but never used                @typescript-eslint/no-unused-vars
+   6:23  warning  'ChevronUp' is defined but never used                  @typescript-eslint/no-unused-vars
+  11:12  warning  'showBrianBio' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  11:26  warning  'setShowBrianBio' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  12:12  warning  'showJoshinBio' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  12:27  warning  'setShowJoshinBio' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/robertbogatin/Documents/Wolves To Feed/WTF website/src/app/layout.tsx
+  5:10  warning  'ClerkProvider' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/robertbogatin/Documents/Wolves To Feed/WTF website/src/app/the-pack/page.tsx
+   6:10  warning  'SignInButton' is defined but never used                                                                                                              @typescript-eslint/no-unused-vars
+   6:24  warning  'SignedIn' is defined but never used                                                                                                                  @typescript-eslint/no-unused-vars
+   6:34  warning  'SignedOut' is defined but never used                                                                                                                 @typescript-eslint/no-unused-vars
+   6:45  warning  'UserButton' is defined but never used                                                                                                                @typescript-eslint/no-unused-vars
+  39:8   warning  React Hook useEffect has missing dependencies: 'campfireImages.length' and 'headerImages.length'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+✖ 14 problems (0 errors, 14 warnings)
+
