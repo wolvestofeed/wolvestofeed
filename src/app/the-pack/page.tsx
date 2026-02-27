@@ -106,7 +106,7 @@ export default function ThePackPage() {
                     <div className="relative p-8 md:p-12 text-center flex flex-col items-center">
                         <h2 className="font-cinzel text-3xl md:text-4xl text-aged-gold mb-4 smoke-effect">The Inner Den</h2>
                         <p className="font-tahoma text-gray-400 mb-8 max-w-lg leading-relaxed italic">
-                            Wisdom is found within the collective. Contact us about becoming a part of an integrated wellness collective for adult men.
+                            Wisdom is found within the collective. Contact us about becoming a part of an integrated wellness collective for conscious men.
                         </p>
 
                         {/* Clerk Logic temporarily hidden until keys are configured
