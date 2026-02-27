@@ -26,8 +26,12 @@ export default function PodcastPage() {
             {/* Header text fades out in focus mode */}
             <div className={`transition-all duration-700 pt-16 relative z-30 ${focusMode ? "opacity-10 pointer-events-none" : "opacity-100"}`}>
                 <div className="max-w-7xl mx-auto px-8">
-                    <div className="mb-12 text-center">
-                        <h1 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-6 smoke-effect inline-block">The Practice Engine</h1>
+                    <div className="mb-12 text-center flex flex-col items-center">
+                        <h1 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-4 smoke-effect inline-block">The Practice Engine</h1>
+
+                        {/* Decorative Gradient Line */}
+                        <div className="w-full max-w-[28rem] h-px bg-gradient-to-r from-transparent via-aged-gold to-transparent mb-8" />
+
                         <p className="font-tahoma text-xl text-gray-300 max-w-2xl mx-auto">
                             Brian and Joshin help men in their second half of life integrate wellness practices and embody lifestyle choices that cultivate self-awareness, vitality, and purpose. We focus on wisdom, real stories, and simple demonstrations that keep you coherent, grounded, and alive amidst the complexities of work, family, and change.
                         </p>
@@ -104,7 +108,10 @@ export default function PodcastPage() {
                     {/* Series 1: Fire and Vice */}
                     <section>
                         <div className="mb-12 border-l-4 border-fire-orange pl-8 py-2">
-                            <h2 className="font-cinzel text-4xl text-white tracking-widest uppercase mb-2">Fire and Vice</h2>
+                            <div className="flex items-center gap-6 mb-2">
+                                <h2 className="font-cinzel text-4xl text-white tracking-widest uppercase">Fire and Vice</h2>
+                                <div className="w-72 h-px bg-gradient-to-r from-aged-gold to-transparent" />
+                            </div>
                             <p className="font-tahoma text-aged-gold text-lg italic">Exploring the passion in our desires</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -123,7 +130,10 @@ export default function PodcastPage() {
                     {/* Series 2: Breath of Fire */}
                     <section>
                         <div className="mb-12 border-l-4 border-aged-gold pl-8 py-2">
-                            <h2 className="font-cinzel text-4xl text-white tracking-widest uppercase mb-2">Breath of Fire</h2>
+                            <div className="flex items-center gap-6 mb-2">
+                                <h2 className="font-cinzel text-4xl text-white tracking-widest uppercase">Breath of Fire</h2>
+                                <div className="w-72 h-px bg-gradient-to-r from-aged-gold to-transparent" />
+                            </div>
                             <p className="font-tahoma text-aged-gold text-lg italic">Life-Force energy cultivation</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -145,7 +155,10 @@ export default function PodcastPage() {
             {/* Sub-grid of videos fades out in focus mode */}
             <div className={`transition-all duration-700 pb-24 relative z-30 ${focusMode ? "opacity-10 pointer-events-none" : "opacity-100"}`}>
                 <div className="max-w-7xl mx-auto px-8">
-                    <h2 className="font-cinzel text-3xl text-gray-100 mb-8 border-b border-white/10 pb-4">Recent Transmissions</h2>
+                    <div className="flex items-center gap-6 mb-8 pb-4">
+                        <h2 className="font-cinzel text-4xl text-white tracking-widest uppercase">Recent Transmissions</h2>
+                        <div className="w-72 h-px bg-gradient-to-r from-aged-gold to-transparent" />
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {youtubeVideos.map((video) => (
                             <div key={video.id} className="group cursor-pointer">
