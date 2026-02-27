@@ -27,7 +27,8 @@ export default function PodcastPage() {
             <div className={`transition-all duration-700 pt-16 relative z-30 ${focusMode ? "opacity-10 pointer-events-none" : "opacity-100"}`}>
                 <div className="max-w-7xl mx-auto px-8">
                     <div className="mb-12 text-center flex flex-col items-center">
-                        <h1 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-4 smoke-effect inline-block">The Practice Engine</h1>
+                        <h1 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-2 smoke-effect inline-block">Wolves to Feed Podcast</h1>
+                        <h2 className="font-cinzel text-2xl md:text-3xl text-fire-orange mb-6 tracking-widest uppercase">The Practice Engine</h2>
 
                         {/* Decorative Gradient Line */}
                         <div className="w-full max-w-[28rem] h-px bg-gradient-to-r from-transparent via-aged-gold to-transparent mb-8" />
