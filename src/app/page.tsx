@@ -84,7 +84,7 @@ export default function Home() {
                   Embrace the untamed self. Navigate the distractions and confront your raw nature in the smoke.
                 </p>
                 <Link href="/the-pack" className="inline-block mt-8 px-10 py-4 border border-[#b0c4b0] text-[#b0c4b0] hover:bg-[#b0c4b0]/10 transition-colors font-tahoma uppercase tracking-widest text-sm smoke-effect backdrop-blur-md">
-                  Enter The Smoke
+                  Enter The Smoke&apos;s Center
                 </Link>
               </div>
             </div>

@@ -72,7 +72,7 @@ export default function CoachingPage() {
                         <div className="md:col-span-8 flex flex-col justify-center">
                             <h4 className="font-cinzel text-xl text-white/40 uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Biography</h4>
                             <p className="font-tahoma text-gray-400 text-base leading-relaxed">
-                                Biography coming soon. Brian's approach to coaching integrates deep physical discipline with contemplative inquiry, providing a path for those ready to face the shadow and integrate their full story.
+                                Biography coming soon. Brian&apos;s approach to coaching integrates deep physical discipline with contemplative inquiry, providing a path for those ready to face the shadow and integrate their full story.
                             </p>
                         </div>
                     </div>

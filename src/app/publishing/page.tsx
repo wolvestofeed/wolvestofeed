@@ -59,7 +59,7 @@ export default function PublishingPage() {
                     </h1>
                     <div className="w-24 h-1 bg-gradient-to-r from-transparent via-aged-gold to-transparent mb-12"></div>
                     <p className="font-tahoma text-xl md:text-2xl text-gray-400 max-w-4xl leading-relaxed italic">
-                        "The story you tell yourself is the territory you inhabit. We publish the maps for those brave enough to redraw their borders."
+                        &quot;The story you tell yourself is the territory you inhabit. We publish the maps for those brave enough to redraw their borders.&quot;
                     </p>
                 </section>
 
@@ -157,7 +157,7 @@ export default function PublishingPage() {
                                         className="bg-aged-gold hover:bg-yellow-500 text-black border-2 border-transparent hover:border-white shadow-lg w-full sm:w-auto"
                                     />
                                 </div>
-                                
+
                                 {/* Pre-Order Notice */}
                                 <div className="bg-black/40 border border-fire-orange/30 p-4 rounded-lg flex items-start gap-3">
                                     <span className="text-fire-orange text-xl mt-0.5" aria-hidden="true">🔥</span>

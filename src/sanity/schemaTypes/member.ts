@@ -1,3 +1,5 @@
+import { Rule } from "sanity";
+
 export const member = {
     name: 'member',
     title: 'Member',
@@ -7,13 +9,13 @@ export const member = {
             name: 'name',
             title: 'Name',
             type: 'string',
-            validation: (Rule: any) => Rule.required(),
+            validation: (rule: Rule) => rule.required(),
         },
         {
             name: 'email',
             title: 'Email',
             type: 'string',
-            validation: (Rule: any) => Rule.required().email(),
+            validation: (rule: Rule) => rule.required().email(),
         },
         {
             name: 'contactInfo',

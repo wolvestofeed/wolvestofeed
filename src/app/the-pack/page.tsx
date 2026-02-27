@@ -91,7 +91,7 @@ export default function ThePackPage() {
                         <div className="w-full md:w-2/3 p-12 md:p-20 flex flex-col justify-center">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-aged-gold/5 blur-[100px] pointer-events-none" />
                             <h2 className="font-tahoma text-2xl md:text-4xl lg:text-5xl leading-tight text-white/90 drop-shadow-sm italic font-light">
-                                "A wellness collective for men in mid-life who are seeking to stoke and sustain the flames of <span className="text-aged-gold font-normal">Wisdom</span> and conscious embodiment."
+                                &quot;A wellness collective for men in mid-life who are seeking to stoke and sustain the flames of <span className="text-aged-gold font-normal">Wisdom</span> and conscious embodiment.&quot;
                             </h2>
                             <div className="mt-12 w-24 h-px bg-gradient-to-r from-aged-gold to-transparent" />
                         </div>
@@ -120,8 +120,8 @@ export default function ThePackPage() {
 
                         <div className="w-full max-w-xl flex flex-col items-center">
                             <div className="w-full">
-                                <GoogleFormEmbed 
-                                    formUrl="https://forms.gle/knVbtR8ndgJPf5yaA" 
+                                <GoogleFormEmbed
+                                    formUrl="https://forms.gle/knVbtR8ndgJPf5yaA"
                                     title="Member Application Form"
                                     height={500}
                                 />
