@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^6.38.2",
     "@sanity/client": "^7.16.0",
     "@sanity/image-url": "^2.0.3",
+    "@stripe/stripe-js": "^8.8.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.3",
     "lucide-react": "^0.575.0",
@@ -19,6 +20,7 @@
     "next-sanity": "^12.1.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "stripe": "^20.4.0",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import GoogleFormEmbed from "@/components/GoogleFormEmbed";
+import CheckoutButton from "@/components/CheckoutButton";
 
 export default function CoachingPage() {
     const [showBrianBio, setShowBrianBio] = useState(false);
@@ -22,9 +23,9 @@ export default function CoachingPage() {
     ];
 
     const pricing = [
-        { title: "Single Session", time: "90 min", price: "$75", description: "A focused, standalone deep dive into your practice." },
-        { title: "4-Pack Bundle", time: "4 × 90 min", price: "$270", description: "Commit to continuous growth. Includes a 10% discount.", highlight: true },
-        { title: "12-Pack Bundle", time: "12 × 90 min", price: "$720", description: "Transformative long-term mastery. Includes a 20% discount." },
+        { title: "Single Session", time: "90 min", price: "$75", description: "A focused, standalone deep dive into your practice.", priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_COACHING_SINGLE || "" },
+        { title: "4-Pack Bundle", time: "4 × 90 min", price: "$270", description: "Commit to continuous growth. Includes a 10% discount.", highlight: true, priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_COACHING_4PACK || "" },
+        { title: "12-Pack Bundle", time: "12 × 90 min", price: "$720", description: "Transformative long-term mastery. Includes a 20% discount.", priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_COACHING_12PACK || "" },
     ];
 
     return (
@@ -54,7 +55,7 @@ export default function CoachingPage() {
 
                 {/* The Coaches Section */}
                 <div className="mb-24 space-y-24">
-                    
+
                     {/* Coach 1: Brian Winters */}
                     <div className="py-16 border-y border-white/5 bg-black/20 flex flex-col md:grid md:grid-cols-12 gap-12 items-center md:items-start p-8 md:p-12 rounded-2xl relative overflow-hidden group">
                         <div className="md:col-span-4 flex flex-col items-center md:items-start">
@@ -67,7 +68,7 @@ export default function CoachingPage() {
                                 A specialist in the darker terrains of the psyche. Helping you navigate the smoke and reclaim the lost fragments of your true self.
                             </p>
                         </div>
-                        
+
                         <div className="md:col-span-8 flex flex-col justify-center">
                             <h4 className="font-cinzel text-xl text-white/40 uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Biography</h4>
                             <p className="font-tahoma text-gray-400 text-base leading-relaxed">
@@ -114,7 +115,12 @@ export default function CoachingPage() {
                                 <h3 className="font-cinzel text-2xl text-white mb-2 text-center">{pkg.title}</h3>
                                 <div className="text-center font-tahoma text-aged-gold mb-4 text-4xl">{pkg.price}</div>
                                 <div className="text-center text-gray-400 text-sm mb-6 uppercase tracking-wider">{pkg.time}</div>
-                                <p className="font-tahoma text-gray-400 text-sm text-center flex-grow">{pkg.description}</p>
+                                <p className="font-tahoma text-gray-400 text-sm text-center flex-grow mb-6">{pkg.description}</p>
+                                <CheckoutButton
+                                    priceId={pkg.priceId}
+                                    label="Book Now"
+                                    className={`w-full justify-center ${pkg.highlight ? "bg-aged-gold hover:bg-yellow-500 text-black" : "border border-white/20 hover:border-white/50 text-white bg-transparent"}`}
+                                />
                             </div>
                         ))}
                     </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import CheckoutButton from "@/components/CheckoutButton";
 
 export default function PublishingPage() {
     const [activeBook, setActiveBook] = useState<"book1" | "book2" | "book3">("book1");
@@ -14,7 +15,8 @@ export default function PublishingPage() {
             frontCover: "/on-the-edge-front-v3.jpg",
             backCover: "https://placehold.co/400x600/D4AF37/1a1a1a.png?text=Back+Cover",
             excerpt: "On the Edge of Greatness is half selective autobiography and half essential toolkit - the one I’ve developed for living an ambitious, mission-driven life that has not resulted in the outcomes and financial independence I expected to achieve. The ‘Edge of Greatness’ is a feeling running through me; one that offers hope and haunts me at the same time. The relentless sense of being so close to a breakthrough yet ultimately held back from the full promised payoff.\n\nBeing on the ‘Edge of Greatness’ is like a waiting period when you know you’ve done enough to make it to the next level. When the enormous impact of what could happen to you starts to become real and your ego is eating the belief that “It’s going to happen!” like candy on Halloween.\n\nMost of my youth and adult life has been a sad disappointment. I believe I am capable and destined for so much more richness in life, personally and professionally. I’d like to be able to share that quality with people I care about, celebrating the joy and vibrancy we have created in our communities. But I don’t have these things to enjoy. There is no solidity in my career, I experience a tiny and dysfunctional family life and my personal life is filled with mostly solo activities and things I do with my dog. I find myself swimming in a life soup that’s peppered with the nagging question, ‘How do I stay open, generous, healthy and grounded when the scoreboard says I’m losing, big-time?’\n\nIn this book I am going to explore the ways that I maintain open-heartedness, a positive mindset and inner peace despite the constant setbacks in my life. As an organizational systems thinker and philosopher of the human experience, my intention with this book is to examine the Edges of Greatness, as I’ve recurrently experienced them, in such a way that forges the lessons I’ve learned into a thousand-layer Damascus Broadsword that can be wielded at any time.\n\nI am sharing with you some of the notable, metaphorical mountains I’ve climbed. You’ll hear about the milestones I reached along each journey and how I was able to repeatedly create breakthrough opportunities for myself. And yet how nothing I did, thought or felt in the end would lead to my desired success. This pattern is apparent in every major area of my life. So this book is going to cover it as I see it. I’ve separated the roller-coaster ride of life into its major domains, where we can explore each aspect of my life failures in greater detail. Oops, I mean my opportunities for growth.\n\nThe major domains are:\n◊   Edge of Spirit\n◊   Edge of Career\n◊.  Edge of Body\n◊   Edge of Intimacy\n◊   Edge of Legacy",
-            price: "$15.99"
+            price: "$15.99",
+            priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_BOOK_OTEG || "",
         },
         book2: {
             title: "Edges of Greatness Workbook",
@@ -22,7 +24,8 @@ export default function PublishingPage() {
             frontCover: "/workbook-front-v1.jpg",
             backCover: "https://placehold.co/400x600/E25822/1a1a1a.png?text=Back+Cover",
             excerpt: "This workbook is designed to accompany On the Edge of Greatness: A Field Guide for Persistent Humans.\n\nUse it to map your own edges, apply the animal medicine tools, and design a life that honors both your ambition and your reality. \n\nHOW TO USE THIS WORKBOOK\nThis is not a journal. It’s a practical toolkit for redesigning the systems that generate your lived reality.\n\nThe core principle: Your reality is a lagging indicator of your behaviors, which are driven by emotions, feelings, and thoughts rooted in core beliefs. When you work with the Edges framework, you’re pulling three levers:\n\n◊Thinking (paradigm shift) – Change the mental model\n◊Feeling (perspective change) – Reframe the emotional interpretation\n◊Body (physiological state) – Reset the nervous system response\n\nEach domain offers:\n◊Core mapping exercises to name your edges\n◊Animal medicine tools for persistence\n◊Reflection prompts to pull the levers\n◊Worksheets you can return to again and again",
-            price: "$11.99"
+            price: "$11.99",
+            priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_BOOK_WORKBOOK || "",
         },
         book3: {
             title: "The Edges Bundle",
@@ -30,7 +33,8 @@ export default function PublishingPage() {
             frontCover: "/on-the-edge-front-v3.jpg", // Using main book as lead image
             backCover: "/workbook-front-v1.jpg",
             excerpt: "The ultimate transformation package. This bundle includes both the 'On the Edge of Greatness' Master Text and the 'Edges of Greatness Workbook'. Explore the philosophy and immediately begin the implementation. Forged together to save you 14% on your journey toward integration.",
-            price: "$24.00"
+            price: "$24.00",
+            priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_BOOK_BUNDLE || "",
         }
     };
 
@@ -143,16 +147,14 @@ export default function PublishingPage() {
                                 <div className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none rounded-b-lg z-10" />
                             </div>
 
-                            {/* Stripe Checkout Mock UI */}
-                            <div className="bg-gray-900 border border-white/20 p-6 rounded-lg flex items-center justify-between">
-                                <span className="font-cinzel text-2xl text-white">{currentBook.price}</span>
-                                <button className="bg-aged-gold hover:bg-yellow-500 text-black font-tahoma uppercase tracking-widest px-8 py-3 transition-colors border-2 border-transparent hover:border-white shadow-lg flex items-center gap-2">
-                                    <span>Purchase</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                                        <path fillRule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clipRule="evenodd" />
-                                    </svg>
-                                </button>
+                            {/* Stripe Checkout */}
+                            <div className="bg-gray-900 border border-white/20 p-6 rounded-lg flex items-center justify-between gap-4">
+                                <span className="font-cinzel text-2xl text-white shrink-0">{currentBook.price}</span>
+                                <CheckoutButton
+                                    priceId={currentBook.priceId}
+                                    label="Purchase"
+                                    className="bg-aged-gold hover:bg-yellow-500 text-black border-2 border-transparent hover:border-white shadow-lg"
+                                />
                             </div>
 
                         </div>
