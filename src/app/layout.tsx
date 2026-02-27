@@ -11,8 +11,9 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "Wolves To Feed | Wellness Collective for Men In Mid-Life",
-  description: "An integrated wellness collective for men in mid-life seeking wisdom, physical discipline, and conscious embodiment.",
+  title: "Wolves To Feed | The Integrated Lifestyle Collective for Men",
+  description: "An integrated wellness collective for conscious men in their second half of life seeking physical discipline, wisdom, and conscious embodiment.",
+  keywords: ["Men's wellness", "mid-life", "personal development", "integrated lifestyle", "wisdom", "discipline", "brotherhood", "Wolves To Feed"],
 };
 
 export default function RootLayout({
