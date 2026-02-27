@@ -59,7 +59,7 @@ export default function PublishingPage() {
                     </h1>
                     <div className="w-24 h-1 bg-gradient-to-r from-transparent via-aged-gold to-transparent mb-12"></div>
                     <p className="font-tahoma text-xl md:text-2xl text-gray-400 max-w-4xl leading-relaxed italic">
-                        &quot;The story you tell yourself is the territory you inhabit. We publish the maps for those brave enough to redraw their borders.&quot;
+                        The story you tell yourself is the territory you inhabit. We publish the maps for those brave enough to redraw their borders.
                     </p>
                 </section>
 
