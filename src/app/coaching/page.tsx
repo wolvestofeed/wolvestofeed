@@ -33,8 +33,12 @@ export default function CoachingPage() {
             <div className="max-w-6xl mx-auto px-8">
 
                 {/* Header */}
-                <div className="text-center mb-20">
+                <div className="text-center mb-20 flex flex-col items-center">
                     <h1 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-6 smoke-effect">The Forge: Coaching</h1>
+
+                    {/* Decorative Gradient Line */}
+                    <div className="w-full max-w-[28rem] h-px bg-gradient-to-r from-transparent via-aged-gold to-transparent mb-8" />
+
                     <p className="font-tahoma text-xl text-gray-300 max-w-2xl mx-auto">
                         Multi-disciplinary training designed to integrate <br className="hidden md:block" /> the Shadow and unleash the Spirit.
                     </p>
