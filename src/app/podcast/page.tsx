@@ -87,7 +87,7 @@ export default function PodcastPage() {
                                 <span className="text-aged-gold font-medium">Brian and Joshin</span> - two friends in their fifties with very different second‑half lives - holistically exploring wellness practices from around the world and sharing real demonstrations and live sessions to build a culture and community of integrated, healthy men in a world where masculinity is in flux.
                             </p>
 
-                            <div className="w-12 h-px bg-gradient-to-r from-aged-gold to-transparent my-8" />
+                            <div className="w-72 h-px bg-gradient-to-r from-aged-gold to-transparent my-8" />
 
                             <p className="font-tahoma text-xl leading-relaxed text-gray-100 font-light">
                                 You’ll hear us discuss wellness practices through the <span className="text-white/80">body, mind, heart, spirit, relationships, and legacy</span>, weave in studies, teachers, and traditions when they genuinely help, and then show how we actually embody and integrate those insights in real, modern life.
