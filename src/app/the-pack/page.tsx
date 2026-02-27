@@ -93,7 +93,7 @@ export default function ThePackPage() {
 
                             <div className="mb-8">
                                 <h1 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-4 smoke-effect inline-block">The Pack</h1>
-                                <div className="w-full max-w-[22rem] h-px bg-gradient-to-r from-transparent via-aged-gold to-transparent" />
+                                <div className="w-full max-w-[22rem] h-px bg-gradient-to-r from-aged-gold to-transparent" />
                             </div>
 
                             <h2 className="font-tahoma text-2xl md:text-4xl lg:text-5xl leading-tight text-white/90 drop-shadow-sm italic font-light">
