@@ -29,7 +29,7 @@ export default function Home() {
         <h2 className="font-cinzel text-xl md:text-3xl lg:text-4xl text-aged-gold tracking-[0.1em] md:tracking-[0.2em] text-center px-8 leading-tight uppercase drop-shadow-2xl">
           Integrated Wellness Collective <br className="hidden md:block" />
           <span className="text-white/80 text-base md:text-xl font-bold mt-4 block tracking-[0.3em] md:tracking-[0.5em]">
-            For Men Over 50
+            For Men In Mid-Life
           </span>
         </h2>
       </div>

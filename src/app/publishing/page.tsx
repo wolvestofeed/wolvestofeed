@@ -4,25 +4,33 @@ import { useState } from "react";
 import Image from "next/image";
 
 export default function PublishingPage() {
-    const [activeBook, setActiveBook] = useState<"book1" | "book2">("book1");
+    const [activeBook, setActiveBook] = useState<"book1" | "book2" | "book3">("book1");
     const [isFlipped, setFlipped] = useState(false);
 
     const books = {
         book1: {
             title: "On the Edge of Greatness",
-            subtitle: "The Master Text",
+            subtitle: "A Field Guide for Persistent Humans",
             frontCover: "/on-the-edge-front-v3.jpg",
             backCover: "https://placehold.co/400x600/D4AF37/1a1a1a.png?text=Back+Cover",
-            excerpt: "The shadow is not an enemy to be vanquished; it is an untamed force waiting for a master. In these pages, we explore the duality of the human condition... (This is a scrollable excerpt. To fully step into greatness, one must first be willing to stand on the edge where the known ends and the vast unknown wilderness begins. This requires immense courage, discipline, and the willingness to let the false self burn in the fire of truth...)",
-            price: "$24.99"
+            excerpt: "On the Edge of Greatness is half selective autobiography and half essential toolkit - the one I’ve developed for living an ambitious, mission-driven life that has not resulted in the outcomes and financial independence I expected to achieve. The ‘Edge of Greatness’ is a feeling running through me; one that offers hope and haunts me at the same time. The relentless sense of being so close to a breakthrough yet ultimately held back from the full promised payoff.\n\nBeing on the ‘Edge of Greatness’ is like a waiting period when you know you’ve done enough to make it to the next level. When the enormous impact of what could happen to you starts to become real and your ego is eating the belief that “It’s going to happen!” like candy on Halloween.\n\nMost of my youth and adult life has been a sad disappointment. I believe I am capable and destined for so much more richness in life, personally and professionally. I’d like to be able to share that quality with people I care about, celebrating the joy and vibrancy we have created in our communities. But I don’t have these things to enjoy. There is no solidity in my career, I experience a tiny and dysfunctional family life and my personal life is filled with mostly solo activities and things I do with my dog. I find myself swimming in a life soup that’s peppered with the nagging question, ‘How do I stay open, generous, healthy and grounded when the scoreboard says I’m losing, big-time?’\n\nIn this book I am going to explore the ways that I maintain open-heartedness, a positive mindset and inner peace despite the constant setbacks in my life. As an organizational systems thinker and philosopher of the human experience, my intention with this book is to examine the Edges of Greatness, as I’ve recurrently experienced them, in such a way that forges the lessons I’ve learned into a thousand-layer Damascus Broadsword that can be wielded at any time.\n\nI am sharing with you some of the notable, metaphorical mountains I’ve climbed. You’ll hear about the milestones I reached along each journey and how I was able to repeatedly create breakthrough opportunities for myself. And yet how nothing I did, thought or felt in the end would lead to my desired success. This pattern is apparent in every major area of my life. So this book is going to cover it as I see it. I’ve separated the roller-coaster ride of life into its major domains, where we can explore each aspect of my life failures in greater detail. Oops, I mean my opportunities for growth.\n\nThe major domains are:\n◊   Edge of Spirit\n◊   Edge of Career\n◊.  Edge of Body\n◊   Edge of Intimacy\n◊   Edge of Legacy",
+            price: "$15.99"
         },
         book2: {
             title: "Edges of Greatness Workbook",
-            subtitle: "The Implementation Guide",
+            subtitle: "Maps for Implementation",
             frontCover: "/workbook-front-v1.jpg",
             backCover: "https://placehold.co/400x600/E25822/1a1a1a.png?text=Back+Cover",
-            excerpt: "Action is the bridge between philosophy and reality. Use this workbook to document your daily descent into the shadow and ascent into the spirit... (Scrollable content. Week 1: Identifying the False Self. Week 2: Building the Fire. Week 3: Forging Discourse without distraction...)",
-            price: "$19.99"
+            excerpt: "This workbook is designed to accompany On the Edge of Greatness: A Field Guide for Persistent Humans.\n\nUse it to map your own edges, apply the animal medicine tools, and design a life that honors both your ambition and your reality. \n\nHOW TO USE THIS WORKBOOK\nThis is not a journal. It’s a practical toolkit for redesigning the systems that generate your lived reality.\n\nThe core principle: Your reality is a lagging indicator of your behaviors, which are driven by emotions, feelings, and thoughts rooted in core beliefs. When you work with the Edges framework, you’re pulling three levers:\n\n◊Thinking (paradigm shift) – Change the mental model\n◊Feeling (perspective change) – Reframe the emotional interpretation\n◊Body (physiological state) – Reset the nervous system response\n\nEach domain offers:\n◊Core mapping exercises to name your edges\n◊Animal medicine tools for persistence\n◊Reflection prompts to pull the levers\n◊Worksheets you can return to again and again",
+            price: "$11.99"
+        },
+        book3: {
+            title: "The Edges Bundle",
+            subtitle: "Field Guide & Workbook Set",
+            frontCover: "/on-the-edge-front-v3.jpg", // Using main book as lead image
+            backCover: "/workbook-front-v1.jpg",
+            excerpt: "The ultimate transformation package. This bundle includes both the 'On the Edge of Greatness' Master Text and the 'Edges of Greatness Workbook'. Explore the philosophy and immediately begin the implementation. Forged together to save you 14% on your journey toward integration.",
+            price: "$24.00"
         }
     };
 
@@ -33,7 +41,7 @@ export default function PublishingPage() {
             <div className="max-w-6xl mx-auto px-8">
 
                 {/* Brand Header Section */}
-                <section className="mb-32 flex flex-col items-center text-center">
+                <section className="mb-16 flex flex-col items-center text-center">
                     <div className="relative w-48 h-48 mb-8 opacity-90 hover:opacity-100 transition-opacity">
                         <Image
                             src="/WTF Pub Mark white.png"
@@ -51,7 +59,7 @@ export default function PublishingPage() {
                     </p>
                 </section>
 
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-32" />
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-16" />
 
                 {/* Existing Library Header */}
                 <div className="text-center mb-20 max-w-3xl mx-auto">
@@ -81,6 +89,15 @@ export default function PublishingPage() {
                             >
                                 <div className="font-cinzel text-xl text-white mb-2">{books.book2.title}</div>
                                 <div className="font-tahoma text-sm text-fire-orange uppercase tracking-wider">{books.book2.subtitle}</div>
+                            </button>
+
+                            <button
+                                onClick={() => { setActiveBook("book3"); setFlipped(false); }}
+                                className={`w-full text-left p-6 rounded-lg border transition-all duration-300 ${activeBook === "book3" ? "bg-gray-900 border-white shadow-[0_4px_20px_rgba(255,255,255,0.1)]" : "bg-black/50 border-white/5 hover:border-white/20"}`}
+                            >
+                                <div className="font-cinzel text-xl text-white mb-2">{books.book3.title}</div>
+                                <div className="font-tahoma text-sm text-white/70 uppercase tracking-wider mb-2">{books.book3.subtitle}</div>
+                                <div className="inline-block bg-fire-orange text-white text-[10px] px-2 py-0.5 rounded font-bold">14% BUNDLE SAVINGS</div>
                             </button>
                         </div>
                     </div>
@@ -120,12 +137,8 @@ export default function PublishingPage() {
                             <div className="flex-grow bg-black/60 border border-white/10 rounded-lg p-6 mb-8 relative">
                                 <div className="absolute top-0 left-0 w-full h-6 bg-gradient-to-b from-black/80 to-transparent pointer-events-none rounded-t-lg z-10" />
                                 <h4 className="font-cinzel text-sm text-aged-gold mb-4 uppercase tracking-widest border-b border-white/10 pb-2">Read an Excerpt</h4>
-                                <div className="h-48 overflow-y-auto pr-4 font-tahoma text-gray-300 leading-relaxed text-sm scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                                <div className="h-48 overflow-y-auto pr-4 font-tahoma text-gray-300 leading-relaxed text-sm scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent whitespace-pre-line">
                                     {currentBook.excerpt}
-                                    <br /><br />
-                                    (The text continues... testing scrolling. Wolves represent the duality...)
-                                    <br /><br />
-                                    (Another paragraph detailing the shadow work required to read this book. Only by diving deep into the prose can one emerge reborn in the ember...)
                                 </div>
                                 <div className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none rounded-b-lg z-10" />
                             </div>

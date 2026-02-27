@@ -15,6 +15,9 @@ export default function PodcastPage() {
         { id: "4", title: "Discipline and Freedom", thumbnail: "https://placehold.co/600x400/1a1a1a/D4AF37.png?text=Video+4", duration: "1:10:00" },
     ];
 
+    // Replace this ID with your actual YouTube Welcome Video ID once it's uploaded
+    const WELCOME_VIDEO_ID = "YOUR_WELCOME_VIDEO_ID_HERE";
+
     return (
         <div className="min-h-screen bg-obsidian text-white relative">
             {/* Dim Overlay - Appears only when focus mode is true */}
@@ -26,13 +29,13 @@ export default function PodcastPage() {
                     <div className="mb-12 text-center">
                         <h1 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-6 smoke-effect inline-block">The Practice Engine</h1>
                         <p className="font-tahoma text-xl text-gray-300 max-w-2xl mx-auto">
-                            We help men in their second half of life integrate wellness practices and embody lifestyle choices that lead to self‑awareness, vitality, and purpose. Brian and Joshin focus on embodying wisdom, real stories, and simple practices that help you feel coherent, grounded, and alive in the middle of work, family, aging, and change.
+                            Brian and Joshin help men in their second half of life integrate wellness practices and embody lifestyle choices that cultivate self-awareness, vitality, and purpose. We focus on wisdom, real stories, and simple demonstrations that keep you coherent, grounded, and alive amidst the complexities of work, family, and change.
                         </p>
                     </div>
                 </div>
             </div>
 
-            {/* Intro Video Component */}
+            {/* Main Welcome Broadcast Section */}
             <div className={`transition-all duration-700 relative z-50 flex items-center justify-center mb-20 ${focusMode ? "fixed inset-0 px-4 scale-100" : "max-w-5xl mx-auto px-8 scale-95"}`}>
                 <div className={`relative w-full overflow-hidden transition-all duration-700 bg-gray-900 ${focusMode ? "max-w-6xl aspect-video rounded-xl border border-aged-gold shadow-[0_0_50px_rgba(212,175,55,0.3)]" : "aspect-video rounded-lg border border-white/20 shadow-2xl"}`}>
 
@@ -45,12 +48,16 @@ export default function PodcastPage() {
                         </button>
                     </div>
 
-                    {/* Placeholder for Video Player */}
-                    <div className="w-full h-full flex flex-col items-center justify-center">
-                        <div className={`w-20 h-20 rounded-full bg-aged-gold/20 flex items-center justify-center mb-4 transition-all duration-300 cursor-pointer ${focusMode ? "scale-110 bg-fire-orange/20 hover:bg-fire-orange/40" : "hover:bg-aged-gold/40"}`}>
-                            <div className={`w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-b-[12px] border-b-transparent ml-2 ${focusMode ? "border-l-fire-orange" : "border-l-aged-gold"}`} />
-                        </div>
-                        <p className="font-cinzel tracking-widest text-gray-400">Main Broadcast</p>
+                    {/* YouTube Video Player */}
+                    <div className="w-full h-full">
+                        <iframe
+                            className="w-full h-full"
+                            src={`https://www.youtube.com/embed/${WELCOME_VIDEO_ID}?modestbranding=1&rel=0&showinfo=0`}
+                            title="WTF Welcome Video"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
                     </div>
 
                 </div>
@@ -88,6 +95,51 @@ export default function PodcastPage() {
                         </div>
                     </div>
                 </motion.div>
+            </div>
+
+            {/* Video Series Sections */}
+            <div className={`transition-all duration-700 relative z-30 mb-24 px-8 ${focusMode ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+                <div className="max-w-7xl mx-auto space-y-32">
+                    
+                    {/* Series 1: Fire and Vice */}
+                    <section>
+                        <div className="mb-12 border-l-4 border-fire-orange pl-8 py-2">
+                            <h2 className="font-cinzel text-4xl text-white tracking-widest uppercase mb-2">Fire and Vice</h2>
+                            <p className="font-tahoma text-aged-gold text-lg italic">Exploring the passion in our desires</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {[1, 2, 3].map((i) => (
+                                <div key={i} className="group cursor-pointer">
+                                    <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-900 border border-white/10 group-hover:border-fire-orange/50 transition-colors">
+                                        <Image src={`https://placehold.co/600x400/1a1a1a/E25822.png?text=Fire+and+Vice+${i}`} alt="Fire and Vice" fill className="opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                                        <div className="absolute bottom-4 left-4 font-cinzel text-white text-xs tracking-widest">Episode 0{i}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Series 2: Breath of Fire */}
+                    <section>
+                        <div className="mb-12 border-l-4 border-aged-gold pl-8 py-2">
+                            <h2 className="font-cinzel text-4xl text-white tracking-widest uppercase mb-2">Breath of Fire</h2>
+                            <p className="font-tahoma text-aged-gold text-lg italic">Life-Force energy cultivation</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {[1, 2, 3].map((i) => (
+                                <div key={i} className="group cursor-pointer">
+                                    <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-900 border border-white/10 group-hover:border-aged-gold/50 transition-colors">
+                                        <Image src={`https://placehold.co/600x400/1a1a1a/D4AF37.png?text=Breath+of+Fire+${i}`} alt="Breath of Fire" fill className="opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                                        <div className="absolute bottom-4 left-4 font-cinzel text-white text-xs tracking-widest">Technique 0{i}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                </div>
             </div>
 
             {/* Sub-grid of videos fades out in focus mode */}

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import GoogleFormEmbed from "@/components/GoogleFormEmbed";
+
 
 export default function ThePackPage() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -89,7 +91,7 @@ export default function ThePackPage() {
                         <div className="w-full md:w-2/3 p-12 md:p-20 flex flex-col justify-center">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-aged-gold/5 blur-[100px] pointer-events-none" />
                             <h2 className="font-tahoma text-2xl md:text-4xl lg:text-5xl leading-tight text-white/90 drop-shadow-sm italic font-light">
-                                "A wellness collective for men over 50 who are seeking to stoke and sustain the flames of <span className="text-aged-gold font-normal">Wisdom</span> and conscious embodiment."
+                                "A wellness collective for men in mid-life who are seeking to stoke and sustain the flames of <span className="text-aged-gold font-normal">Wisdom</span> and conscious embodiment."
                             </h2>
                             <div className="mt-12 w-24 h-px bg-gradient-to-r from-aged-gold to-transparent" />
                         </div>
@@ -97,59 +99,42 @@ export default function ThePackPage() {
                 </div>
             </section>
 
-            {/* 1. Inner Den (Login Gate) */}
+            {/* 1. Inner Den (Login & Member Intake) */}
             <section className="max-w-4xl mx-auto px-8 mb-24">
                 <div className="relative overflow-hidden rounded-xl border border-white/10 p-1 bg-gradient-to-br from-gray-900 to-black shadow-2xl">
                     <div className="absolute inset-0 bg-[url('/wolves to feed poster 1.png')] opacity-10 bg-cover bg-center mix-blend-overlay"></div>
-                    <div className="relative p-12 text-center flex flex-col items-center">
+                    <div className="relative p-8 md:p-12 text-center flex flex-col items-center">
                         <h2 className="font-cinzel text-3xl md:text-4xl text-aged-gold mb-4 smoke-effect">The Inner Den</h2>
+                        <p className="font-tahoma text-gray-400 mb-8 max-w-lg leading-relaxed italic">
+                            Wisdom is found within the collective. Contact us about becoming a part of an integrated wellness collective for adult men.
+                        </p>
 
-                        {(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY.startsWith('pk_test_')) ? (
-                            <>
-                                <SignedOut>
-                                    <p className="font-tahoma text-gray-400 mb-8 max-w-md">Access premium courses, deeper discussions, and exclusive material reserved for initiated members.</p>
-                                    <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                                        <SignInButton mode="modal">
-                                            <button className="px-8 py-3 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-tahoma uppercase tracking-widest transition-colors">
-                                                Login
-                                            </button>
-                                        </SignInButton>
-                                        <button className="px-8 py-3 bg-fire-orange/20 hover:bg-fire-orange/40 border border-fire-orange/50 text-white font-tahoma uppercase tracking-widest transition-colors">
-                                            Become a Member
-                                        </button>
-                                    </div>
-                                </SignedOut>
+                        {/* Clerk Logic temporarily hidden until keys are configured
+                        <SignedIn>
+                            ...
+                        </SignedIn>
+                        <SignedOut>
+                            ...
+                        </SignedOut>
+                        */}
 
-                                <SignedIn>
-                                    <p className="font-tahoma text-aged-gold mb-8 max-w-md italic">Welcome back, finder. You are now within the Den.</p>
-                                    <div className="flex flex-col items-center gap-6">
-                                        <UserButton afterSignOutUrl="/the-pack" appearance={{ elements: { userButtonAvatarBox: "w-16 h-16 border-2 border-aged-gold" } }} />
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                                            <div className="p-4 bg-black/40 border border-white/5 rounded hover:border-aged-gold/30 transition-colors cursor-pointer">
-                                                <h4 className="font-cinzel text-lg text-aged-gold mb-2">Member Dashboard</h4>
-                                                <p className="text-xs text-gray-500">Track your progress and status.</p>
-                                            </div>
-                                            <div className="p-4 bg-black/40 border border-white/5 rounded hover:border-aged-gold/30 transition-colors cursor-pointer">
-                                                <h4 className="font-cinzel text-lg text-aged-gold mb-2">Private Archives</h4>
-                                                <p className="text-xs text-gray-500">Access exclusive transmissions.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SignedIn>
-                            </>
-                        ) : (
-                            <>
-                                <p className="font-tahoma text-gray-400 mb-8 max-w-md">Access premium courses, deeper discussions, and exclusive material reserved for initiated members.</p>
-                                <form className="w-full max-w-sm flex flex-col gap-4">
-                                    <input type="email" placeholder="Email Address" className="bg-black/50 border border-white/20 p-3 text-white font-sans focus:outline-none focus:border-aged-gold transition-colors" />
-                                    <input type="password" placeholder="Password" className="bg-black/50 border border-white/20 p-3 text-white font-sans focus:outline-none focus:border-aged-gold transition-colors" />
-                                    <button type="button" className="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-tahoma uppercase tracking-widest py-3 transition-colors mt-2">Enter</button>
-                                </form>
-                            </>
-                        )}
+                        <div className="w-full max-w-xl flex flex-col items-center">
+                            <div className="w-full">
+                                <GoogleFormEmbed 
+                                    formUrl="https://forms.gle/knVbtR8ndgJPf5yaA" 
+                                    title="Member Application Form"
+                                    height={500}
+                                />
+                                <p className="font-tahoma text-white/30 text-[10px] mt-4 italic uppercase tracking-widest text-center">
+                                    Note: Your transmission is secure and held in the highest confidence.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
+
+
 
             {/* 2. Campfire (Public Hub) */}
             <section className="bg-black/50 py-24 mb-24 border-y border-white/5">
