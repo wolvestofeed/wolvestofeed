@@ -88,8 +88,14 @@ export default function ThePackPage() {
                         </div>
 
                         {/* 2/3 Right Column: Text Section */}
-                        <div className="w-full md:w-2/3 p-12 md:p-20 flex flex-col justify-center">
+                        <div className="w-full md:w-2/3 p-12 md:p-20 flex flex-col justify-center relative">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-aged-gold/5 blur-[100px] pointer-events-none" />
+
+                            <div className="mb-8">
+                                <h1 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-4 smoke-effect inline-block">The Pack</h1>
+                                <div className="w-full max-w-[22rem] h-px bg-gradient-to-r from-transparent via-aged-gold to-transparent" />
+                            </div>
+
                             <h2 className="font-tahoma text-2xl md:text-4xl lg:text-5xl leading-tight text-white/90 drop-shadow-sm italic font-light">
                                 &quot;A wellness collective for men in mid-life who are seeking to stoke and sustain the flames of <span className="text-aged-gold font-normal">Wisdom</span> and conscious embodiment.&quot;
                             </h2>
