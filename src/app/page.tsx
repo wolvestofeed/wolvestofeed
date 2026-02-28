@@ -1,13 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Flame, Wind } from "lucide-react";
+import IntroVideo from "@/components/IntroVideo";
 
 export default function Home() {
   const [hoveredSide, setHoveredSide] = useState<"left" | "right" | null>(null);
+  const [introComplete, setIntroComplete] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    // Check if user has already seen the intro this session
+    const hasSeenIntro = sessionStorage.getItem("wtf-intro-seen");
+    setIntroComplete(!!hasSeenIntro);
+  }, []);
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem("wtf-intro-seen", "true");
+    setIntroComplete(true);
+  };
 
   // Background transition logic
   let leftOverlay = "bg-transparent";
@@ -19,6 +32,20 @@ export default function Home() {
   } else if (hoveredSide === "right") {
     rightOverlay = "bg-black/20 backdrop-blur-sm";
     leftOverlay = "bg-black/90";
+  }
+
+  // Don't render anything until we've checked sessionStorage (avoids flash)
+  if (introComplete === null) {
+    return <div className="min-h-screen bg-obsidian" />;
+  }
+
+  // Show intro video on first visit
+  if (!introComplete) {
+    return (
+      <div className="flex flex-col min-h-screen bg-black">
+        <IntroVideo onComplete={handleIntroComplete} />
+      </div>
+    );
   }
 
   return (
