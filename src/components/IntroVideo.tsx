@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Volume2, VolumeX, RotateCcw } from "lucide-react";
 
 interface IntroVideoProps {
     onComplete: () => void;
@@ -11,8 +12,9 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isFading, setIsFading] = useState(false);
     const [videoReady, setVideoReady] = useState(false);
+    const [isMuted, setIsMuted] = useState(true);
 
-    // Once the first frame is loaded, pause and wait 4 seconds before playing
+    // Once the first frame is loaded, pause and wait 2.5 seconds before playing
     useEffect(() => {
         if (!videoReady || !videoRef.current) return;
 
@@ -40,6 +42,24 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
         onComplete();
     };
 
+    const handleToggleMute = () => {
+        if (videoRef.current) {
+            videoRef.current.muted = !videoRef.current.muted;
+            setIsMuted(videoRef.current.muted);
+        }
+    };
+
+    const handleReplay = () => {
+        if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play();
+            setIsFading(false);
+        }
+    };
+
+    const btnClass =
+        "flex items-center gap-2 px-4 py-2.5 text-white/60 hover:text-white text-sm font-tahoma uppercase tracking-[0.15em] transition-colors duration-300 border border-white/20 hover:border-white/50 rounded-sm backdrop-blur-sm bg-black/20";
+
     return (
         <AnimatePresence>
             {!isFading ? (
@@ -49,7 +69,6 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 1, ease: "easeInOut" }}
                     onAnimationComplete={(definition) => {
-                        // Only call onComplete when the exit animation finishes
                         if (definition === "exit") {
                             onComplete();
                         }
@@ -71,16 +90,25 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
                         />
                     </video>
 
-                    {/* Skip Intro Button */}
-                    <button
-                        onClick={handleSkip}
-                        className="absolute bottom-8 right-8 z-10 px-5 py-2.5 text-white/60 hover:text-white text-sm font-tahoma uppercase tracking-[0.15em] transition-colors duration-300 border border-white/20 hover:border-white/50 rounded-sm backdrop-blur-sm bg-black/20"
-                    >
-                        Skip Intro ›
-                    </button>
+                    {/* Video Controls */}
+                    <div className="absolute bottom-8 right-8 z-10 flex items-center gap-3">
+                        {/* Mute / Unmute */}
+                        <button onClick={handleToggleMute} className={btnClass} aria-label={isMuted ? "Unmute" : "Mute"}>
+                            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                        </button>
+
+                        {/* Replay */}
+                        <button onClick={handleReplay} className={btnClass} aria-label="Replay">
+                            <RotateCcw className="w-4 h-4" />
+                        </button>
+
+                        {/* Skip Intro */}
+                        <button onClick={handleSkip} className={btnClass}>
+                            Skip Intro ›
+                        </button>
+                    </div>
                 </motion.div>
             ) : (
-                /* Fade-to-black layer — animates out after isFading is set */
                 <motion.div
                     key="fade-black"
                     className="w-full min-h-[calc(100vh-80px)] bg-black"
