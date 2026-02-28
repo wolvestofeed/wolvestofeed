@@ -39,9 +39,9 @@ export default function ThePackPage() {
     }, []);
 
     const gatherings = [
-        { id: 1, date: "Saturday, Oct 14", title: "Shadow Work Intensive", topics: "Psychology, Meditation", description: "A deep dive into integrating the untamed parts of yourself." },
-        { id: 2, date: "Sunday, Nov 12", title: "Fire & Focus Bootcamp", topics: "Fitness, Kundalini", description: "Ignite your inner fire with rigorous physical and spiritual discipline." },
-        { id: 3, date: "Friday, Dec 1", title: "The Winter Solstice Ceremony", topics: "Ritual, Community", description: "Join the pack for an evening of reflection and shared intention setting." }
+        { id: 1, date: "Friday, March 20", title: "Spring Equinox Gathering", topics: "Renewal, Qigong, Intention Setting", description: "Mark the return of light. A ceremony of renewal and setting intentions for the season ahead." },
+        { id: 2, date: "Sunday, June 21", title: "Summer Solstice Intensive", topics: "Fire Ceremony, Fitness, Brotherhood", description: "Honor the longest day. Ignite your inner fire with rigorous physical and spiritual discipline." },
+        { id: 3, date: "Tuesday, September 22", title: "Autumn Equinox Ceremony", topics: "Harvest, Shadow Work, Reflection", description: "Gather around the fire for an evening of reflection, gratitude, and shared intention as the light turns inward." }
     ];
 
     const partners = [

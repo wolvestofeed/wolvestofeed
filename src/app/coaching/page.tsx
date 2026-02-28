@@ -10,6 +10,7 @@ import CheckoutButton from "@/components/CheckoutButton";
 export default function CoachingPage() {
     const [showBrianBio, setShowBrianBio] = useState(false);
     const [showJoshinBio, setShowJoshinBio] = useState(false);
+    const [joshinHover, setJoshinHover] = useState(false);
 
     const services = [
         { name: "Yoga", description: "Asana practice for flexibility, balance, and centered presence." },
@@ -74,7 +75,7 @@ export default function CoachingPage() {
                         </div>
 
                         <div className="md:col-span-8 flex flex-col justify-center">
-                            <h4 className="font-cinzel text-xl text-white/40 uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Biography</h4>
+                            <h4 className="font-cinzel text-xl text-white/40 uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Pack Wolf</h4>
                             <p className="font-tahoma text-gray-400 text-base leading-relaxed">
                                 Biography coming soon. Brian&apos;s approach to coaching integrates deep physical discipline with contemplative inquiry, providing a path for those ready to face the shadow and integrate their full story.
                             </p>
@@ -84,8 +85,32 @@ export default function CoachingPage() {
                     {/* Coach 2: Joshin Robert Bogatin */}
                     <div className="py-16 border-y border-white/5 bg-black/20 flex flex-col md:grid md:grid-cols-12 gap-12 items-center md:items-start p-8 md:p-12 rounded-2xl relative overflow-hidden group">
                         <div className="md:col-span-4 flex flex-col items-center md:items-start">
-                            <div className="relative shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-aged-gold transition-all duration-700 mb-8">
-                                <Image src="https://placehold.co/400x400/1a1a1a/D4AF37.png?text=SPIRIT" alt="Joshin Robert Bogatin" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                            {/* Square container – larger than the circle, no clipping so PNG transparency "breaks out" */}
+                            <div
+                                className="relative shrink-0 w-56 h-56 md:w-72 md:h-72 mb-8 cursor-pointer"
+                                onMouseEnter={() => setJoshinHover(true)}
+                                onMouseLeave={() => setJoshinHover(false)}
+                            >
+                                {/* Circle backdrop – slightly smaller, centered behind the image */}
+                                <div className="absolute inset-4 md:inset-5 rounded-full border-[3px] border-white/30 group-hover:border-aged-gold bg-gray-900 transition-all duration-700" />
+
+                                {/* Default: current qigong pose */}
+                                <Image
+                                    src="/joshin-qigong-current.png"
+                                    alt="Joshin Robert Bogatin - Qigong"
+                                    fill
+                                    className="object-contain object-bottom transition-opacity duration-700 ease-in-out drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+                                    style={{ opacity: joshinHover ? 0 : 1 }}
+                                    priority
+                                />
+                                {/* Hover: push palm pose */}
+                                <Image
+                                    src="/joshin-qigong-push-palm.png"
+                                    alt="Joshin Robert Bogatin - Push Palm"
+                                    fill
+                                    className="object-contain object-bottom transition-opacity duration-700 ease-in-out drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+                                    style={{ opacity: joshinHover ? 1 : 0 }}
+                                />
                             </div>
                             <h3 className="font-cinzel text-3xl text-aged-gold mb-2 uppercase tracking-widest text-center md:text-left">Joshin Robert Bogatin</h3>
                             <div className="text-xs text-gray-500 uppercase tracking-[0.2em] mb-4 font-mono text-center md:text-left">Expertise: Fitness, Nutrition, Meditation, Warrior Qigong, Ayurveda</div>
@@ -95,7 +120,7 @@ export default function CoachingPage() {
                         </div>
 
                         <div className="md:col-span-8 flex flex-col justify-center">
-                            <h4 className="font-cinzel text-xl text-white/40 uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Biography</h4>
+                            <h4 className="font-cinzel text-xl text-white/40 uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Lone Wolf</h4>
                             <p className="font-tahoma text-gray-400 text-base leading-relaxed">
                                 Joshin is a lifelong entrepreneur, systems designer, martial artist, and student of Zen and contemplative practices. He spent three decades building values-driven small businesses and nonprofit organizations in service of human wellness, sustainability and community. Drawing from his own boom-and-bust cycles, he writes and coaches to offer a radically honest look at how to remain persistent and awake regardless of the outcome of your efforts. Joshin lives in the remote Colorado mountains with his dog, where he continues to practice, hike the high-country, and support other persistent humans in finding meaning beyond conventional success.
                             </p>
