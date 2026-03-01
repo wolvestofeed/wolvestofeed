@@ -65,7 +65,17 @@ export default function StepGuide({ steps, exerciseId, exerciseTitle = "Exercise
         const stepTitle = `${exerciseTitle} - Step ${currentStep + 1}`;
 
         if (autoGuided && seqState === "playing-step") {
-            if (displayAudio && currentTrack?.title !== stepTitle) {
+            // If there's no audio file at all, skip playing right to the countdown
+            if (!displayAudio) {
+                setTimeout(() => {
+                    setSeqState("countdown");
+                    setTimeRemaining(DEFAULT_COUNTDOWN);
+                }, 0);
+                return;
+            }
+
+            // Normal audio play logic
+            if (currentTrack?.title !== stepTitle) {
                 // Start playing this step's audio
                 playTrack({
                     title: stepTitle,
@@ -75,13 +85,7 @@ export default function StepGuide({ steps, exerciseId, exerciseTitle = "Exercise
             }
 
             // Check if track ended
-            if (displayAudio && currentTrack?.title === stepTitle && !isPlaying && duration > 0 && currentTime >= duration - 0.5) {
-                setTimeout(() => {
-                    setSeqState("countdown");
-                    setTimeRemaining(DEFAULT_COUNTDOWN);
-                }, 0);
-            } else if (!displayAudio) {
-                // If there's no audio file for this step, jump directly to countdown
+            if (currentTrack?.title === stepTitle && !isPlaying && duration > 0 && currentTime >= duration - 0.5) {
                 setTimeout(() => {
                     setSeqState("countdown");
                     setTimeRemaining(DEFAULT_COUNTDOWN);
@@ -127,7 +131,7 @@ export default function StepGuide({ steps, exerciseId, exerciseTitle = "Exercise
             </div>
 
             {/* Step counter */}
-            <div className="text-[10px] text-gray-500 uppercase tracking-widest font-mono mb-6 text-center">
+            <div className="text-[10px] text-gray-400 uppercase tracking-widest font-mono mb-6 text-center">
                 Step {currentStep + 1} of {steps.length}
             </div>
 
@@ -161,7 +165,7 @@ export default function StepGuide({ steps, exerciseId, exerciseTitle = "Exercise
                                         url: displayAudio
                                     });
                                 }}
-                                className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/20 hover:bg-white/10 text-white rounded-md text-xs font-mono uppercase tracking-wider transition-colors"
+                                className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/20 hover:bg-white/10 text-white rounded-md text-sm font-mono uppercase tracking-wider transition-colors"
                             >
                                 <Play className="w-4 h-4" />
                                 {currentTrack?.url === displayAudio ? "Playing Step..." : "Listen to Step"}
@@ -177,12 +181,12 @@ export default function StepGuide({ steps, exerciseId, exerciseTitle = "Exercise
                             className="mt-6 mb-8 p-5 rounded-xl border border-spirit-blue/30 bg-spirit-blue/5 flex flex-col sm:flex-row items-center justify-between gap-4"
                         >
                             <div className="flex flex-col text-center sm:text-left">
-                                <span className="text-sm font-cinzel text-spirit-blue mb-1">Contemplation Time</span>
-                                <span className="text-xs font-mono text-gray-400">Continuing to next step in {timeRemaining}s...</span>
+                                <span className="text-base font-cinzel text-spirit-blue mb-1">Contemplation Time</span>
+                                <span className="text-sm font-mono text-gray-400">Continuing to next step in {timeRemaining}s...</span>
                             </div>
                             <button
                                 onClick={() => setTimeRemaining(0)}
-                                className="px-5 py-2 bg-spirit-blue/20 text-spirit-blue hover:bg-spirit-blue/30 border border-spirit-blue/40 rounded text-xs uppercase tracking-wider font-mono transition-colors whitespace-nowrap"
+                                className="px-5 py-2 bg-spirit-blue/20 text-spirit-blue hover:bg-spirit-blue/30 border border-spirit-blue/40 rounded text-sm uppercase tracking-wider font-mono transition-colors whitespace-nowrap"
                             >
                                 I&apos;m Ready
                             </button>
@@ -203,8 +207,8 @@ export default function StepGuide({ steps, exerciseId, exerciseTitle = "Exercise
                 <button
                     onClick={goPrev}
                     disabled={isFirst}
-                    className={`flex items-center gap-2 px-4 py-2 text-sm font-tahoma uppercase tracking-wider rounded transition-all ${isFirst
-                        ? "text-gray-700 cursor-not-allowed"
+                    className={`flex items-center gap-2 px-4 py-2 text-base font-tahoma uppercase tracking-wider rounded transition-all ${isFirst
+                        ? "text-gray-400 cursor-not-allowed"
                         : "text-gray-400 hover:text-white hover:bg-white/5"
                         }`}
                 >
@@ -214,7 +218,7 @@ export default function StepGuide({ steps, exerciseId, exerciseTitle = "Exercise
 
                 <button
                     onClick={goNext}
-                    className={`flex items-center gap-2 px-6 py-2 text-sm font-tahoma uppercase tracking-wider rounded transition-all ${isLast
+                    className={`flex items-center gap-2 px-6 py-2 text-base font-tahoma uppercase tracking-wider rounded transition-all ${isLast
                         ? "bg-aged-gold/20 border border-aged-gold text-aged-gold hover:bg-aged-gold/30"
                         : "bg-white/5 border border-white/20 text-white hover:bg-white/10"
                         }`}

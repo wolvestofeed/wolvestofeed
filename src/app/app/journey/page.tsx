@@ -74,7 +74,7 @@ export default function JourneyPage() {
                 <h1 className="font-cinzel text-2xl md:text-4xl text-white/90 mb-2">
                     The Journey
                 </h1>
-                <p className="text-gray-500 text-sm font-tahoma max-w-md mx-auto">
+                <p className="text-gray-400 text-base font-tahoma max-w-md mx-auto">
                     From feeding the wolves to finding non-dual being. This is not a straight
                     line — it&apos;s a spiral.
                 </p>
@@ -123,12 +123,12 @@ export default function JourneyPage() {
                                     {/* Content */}
                                     <div className="flex-1 pt-1">
                                         <h3
-                                            className={`font-cinzel text-lg md:text-xl transition-colors duration-300 ${isActive ? stage.color : "text-gray-400 group-hover:text-white/70"
+                                            className={`font-cinzel text-xl md:text-xl transition-colors duration-300 ${isActive ? stage.color : "text-gray-400 group-hover:text-white/70"
                                                 }`}
                                         >
                                             {stage.title}
                                         </h3>
-                                        <p className="text-xs text-gray-600 font-tahoma uppercase tracking-wider mb-2">
+                                        <p className="text-sm text-gray-400 font-tahoma uppercase tracking-wider mb-2">
                                             {stage.subtitle}
                                         </p>
 
@@ -142,7 +142,7 @@ export default function JourneyPage() {
                                             transition={{ duration: 0.4, ease: "easeInOut" }}
                                             className="overflow-hidden"
                                         >
-                                            <p className="text-gray-400 text-sm font-tahoma leading-relaxed mt-3">
+                                            <p className="text-gray-400 text-base font-tahoma leading-relaxed mt-3">
                                                 {stage.description}
                                             </p>
 
@@ -162,10 +162,10 @@ export default function JourneyPage() {
                                                             >
                                                                 <span className="text-xl">{animal.icon}</span>
                                                                 <div>
-                                                                    <div className={`text-xs font-cinzel ${animal.color}`}>
+                                                                    <div className={`text-sm font-cinzel ${animal.color}`}>
                                                                         {animal.name} — {animal.edge}
                                                                     </div>
-                                                                    <div className="text-[10px] text-gray-600 font-mono">
+                                                                    <div className="text-[10px] text-gray-400 font-mono">
                                                                         {exerciseCount} exercises
                                                                     </div>
                                                                 </div>
@@ -190,7 +190,7 @@ export default function JourneyPage() {
                 transition={{ delay: 1.2, duration: 0.8 }}
                 className="text-center mt-16 pt-8 border-t border-white/5"
             >
-                <p className="text-gray-600 text-xs font-tahoma italic max-w-md mx-auto leading-relaxed">
+                <p className="text-gray-400 text-sm font-tahoma italic max-w-md mx-auto leading-relaxed">
                     &ldquo;Not the breakthrough. Not the payoff. Not the arrival. The willingness
                     to keep your heart open, stay generous, remain honest, and persist.&rdquo;
                 </p>

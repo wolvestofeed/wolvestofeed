@@ -54,7 +54,7 @@ export default function ExerciseCard({
                 {/* Top row: animal icon + badges */}
                 <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
-                        {animal && <span className="text-lg">{animal.icon}</span>}
+                        {animal && <span className="text-xl">{animal.icon}</span>}
                         <span
                             className={`text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-mono ${edgeBadgeColors[exercise.edge] || edgeBadgeColors.foundation
                                 }`}
@@ -62,16 +62,16 @@ export default function ExerciseCard({
                             {exercise.edge}
                         </span>
                     </div>
-                    <span className="text-[10px] text-gray-500 font-mono uppercase tracking-wide">
+                    <span className="text-[10px] text-gray-400 font-mono uppercase tracking-wide">
                         {exercise.duration} min
                     </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="font-cinzel text-lg text-white group-hover:text-aged-gold transition-colors mb-1">
+                <h3 className="font-cinzel text-xl text-white group-hover:text-aged-gold transition-colors mb-1">
                     {exercise.title}
                 </h3>
-                <p className="text-gray-500 text-xs font-tahoma mb-3 leading-relaxed">
+                <p className="text-gray-400 text-sm font-tahoma mb-3 leading-relaxed">
                     {mode === "rightnow" && exercise.rightNowSubtitle
                         ? exercise.rightNowSubtitle
                         : exercise.subtitle}
@@ -82,7 +82,7 @@ export default function ExerciseCard({
                     <span className="text-[10px] text-gray-400 font-mono uppercase tracking-wider bg-white/5 px-2 py-0.5 rounded">
                         {leverLabels[exercise.lever] || exercise.lever}
                     </span>
-                    <span className="text-[10px] text-gray-500 font-mono">
+                    <span className="text-[10px] text-gray-400 font-mono">
                         {exercise.steps.length} steps
                     </span>
                 </div>

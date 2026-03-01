@@ -41,7 +41,7 @@ export default function FilterBar({
         <div className="w-full space-y-4">
             {/* Edge Domain Filter */}
             <div>
-                <h2 className="text-sm md:text-base font-cinzel font-bold text-aged-gold tracking-wide mb-3 px-1">
+                <h2 className="text-base md:text-lg font-cinzel font-bold text-aged-gold tracking-wide mb-3 px-1">
                     Edge Domain
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -56,9 +56,9 @@ export default function FilterBar({
                                 onClick={() =>
                                     onEdgeChange(edge.id === "foundation" ? null : edge.id)
                                 }
-                                className={`px-3 py-1.5 rounded-lg text-xs font-tahoma uppercase tracking-wider transition-all duration-200 border ${isActive
+                                className={`px-3 py-1.5 rounded-lg text-sm font-tahoma uppercase tracking-wider transition-all duration-200 border ${isActive
                                     ? "bg-white/10 border-white/30 text-white"
-                                    : "bg-transparent border-white/10 text-gray-500 hover:text-white/70 hover:border-white/20"
+                                    : "bg-transparent border-white/10 text-gray-400 hover:text-white/70 hover:border-white/20"
                                     }`}
                             >
                                 <span className="mr-1.5">{edge.icon}</span>
@@ -71,7 +71,7 @@ export default function FilterBar({
 
             {/* Lever Filter */}
             <div>
-                <h2 className="text-sm md:text-base font-cinzel font-bold text-aged-gold tracking-wide mb-3 px-1">
+                <h2 className="text-base md:text-lg font-cinzel font-bold text-aged-gold tracking-wide mb-3 px-1">
                     Lever
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -84,9 +84,9 @@ export default function FilterBar({
                                 onClick={() =>
                                     onLeverChange(lever.id === "all" ? null : (lever.id as Lever))
                                 }
-                                className={`px-3 py-1.5 rounded-lg text-xs font-tahoma uppercase tracking-wider transition-all duration-200 border ${isActive
+                                className={`px-3 py-1.5 rounded-lg text-sm font-tahoma uppercase tracking-wider transition-all duration-200 border ${isActive
                                     ? "bg-white/10 border-white/30 text-white"
-                                    : "bg-transparent border-white/10 text-gray-500 hover:text-white/70 hover:border-white/20"
+                                    : "bg-transparent border-white/10 text-gray-400 hover:text-white/70 hover:border-white/20"
                                     }`}
                             >
                                 <span className="mr-1.5">{lever.icon}</span>
@@ -99,15 +99,15 @@ export default function FilterBar({
 
             {/* Mood Filter */}
             <div>
-                <h2 className="text-sm md:text-base font-cinzel font-bold text-aged-gold tracking-wide mb-3 px-1">
+                <h2 className="text-base md:text-lg font-cinzel font-bold text-aged-gold tracking-wide mb-3 px-1">
                     Mood
                 </h2>
                 <div className="flex flex-wrap gap-2">
                     <button
                         onClick={() => onMoodChange(null)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-tahoma uppercase tracking-wider transition-all duration-200 border ${!selectedMood
+                        className={`px-3 py-1.5 rounded-lg text-sm font-tahoma uppercase tracking-wider transition-all duration-200 border ${!selectedMood
                             ? "bg-white/10 border-white/30 text-white"
-                            : "bg-transparent border-white/10 text-gray-500 hover:text-white/70 hover:border-white/20"
+                            : "bg-transparent border-white/10 text-gray-400 hover:text-white/70 hover:border-white/20"
                             }`}
                     >
                         <span className="mr-1.5">◈</span>
@@ -119,9 +119,9 @@ export default function FilterBar({
                             <button
                                 key={mood.id}
                                 onClick={() => onMoodChange(mood.id)}
-                                className={`px-3 py-1.5 rounded-lg text-xs font-tahoma uppercase tracking-wider transition-all duration-200 border ${isActive
+                                className={`px-3 py-1.5 rounded-lg text-sm font-tahoma uppercase tracking-wider transition-all duration-200 border ${isActive
                                     ? "bg-white/10 border-white/30 text-white"
-                                    : "bg-transparent border-white/10 text-gray-500 hover:text-white/70 hover:border-white/20"
+                                    : "bg-transparent border-white/10 text-gray-400 hover:text-white/70 hover:border-white/20"
                                     }`}
                             >
                                 <span className="mr-1.5">{mood.icon}</span>

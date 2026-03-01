@@ -58,7 +58,7 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
     };
 
     const btnClass =
-        "flex items-center gap-2 px-4 py-2.5 text-white/60 hover:text-white text-sm font-tahoma uppercase tracking-[0.15em] transition-colors duration-300 border border-white/20 hover:border-white/50 rounded-sm backdrop-blur-sm bg-black/20";
+        "flex items-center gap-2 px-4 py-2.5 text-white/60 hover:text-white text-base font-tahoma uppercase tracking-[0.15em] transition-colors duration-300 border border-white/20 hover:border-white/50 rounded-sm backdrop-blur-sm bg-black/20";
 
     return (
         <AnimatePresence>

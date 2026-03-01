@@ -33,7 +33,7 @@ export default function CancelPage() {
             <p className="font-tahoma text-xl text-gray-300 max-w-2xl leading-relaxed mb-4">
                 The forge will be here when you&apos;re ready.
             </p>
-            <p className="font-tahoma text-base text-gray-500 max-w-xl leading-relaxed mb-12">
+            <p className="font-tahoma text-lg text-gray-400 max-w-xl leading-relaxed mb-12">
                 Your checkout was cancelled and no payment was taken. Come back whenever
                 the time is right.
             </p>

@@ -66,7 +66,7 @@ export default function PodcastPage() {
 
             {/* Hero Still — Closing Frame from Intro Video */}
             <div className="max-w-5xl mx-auto px-8 mb-20">
-                <p className="font-cinzel text-lg text-fire-orange uppercase tracking-[0.3em] text-center mb-4">Launching in April</p>
+                <p className="font-cinzel text-xl text-fire-orange uppercase tracking-[0.3em] text-center mb-4">Launching in April</p>
                 <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/20 shadow-2xl bg-gray-900">
                     <Image
                         src="/podcast-hero-still.png"
@@ -120,7 +120,7 @@ export default function PodcastPage() {
                                     <h2 className="font-cinzel text-4xl text-white tracking-widest uppercase">{series.title}</h2>
                                     <div className="w-72 h-px bg-gradient-to-r from-aged-gold to-transparent" />
                                 </div>
-                                <p className={`font-tahoma ${series.textColor} text-lg italic`}>{series.subtitle}</p>
+                                <p className={`font-tahoma ${series.textColor} text-xl italic`}>{series.subtitle}</p>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {series.episodes.map((ep) => (
@@ -128,9 +128,9 @@ export default function PodcastPage() {
                                         <div className={`relative aspect-video rounded-lg overflow-hidden bg-gray-900 border border-white/10 group-hover:${series.borderColor}/50 transition-colors`}>
                                             {/* Teaser card instead of placeholder image */}
                                             <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black flex flex-col items-center justify-center p-6 text-center">
-                                                <div className={`${series.textColor} font-mono text-xs uppercase tracking-widest mb-3 opacity-60`}>{ep.label}</div>
+                                                <div className={`${series.textColor} font-mono text-sm uppercase tracking-widest mb-3 opacity-60`}>{ep.label}</div>
                                                 <h4 className="font-cinzel text-xl text-white mb-3">{ep.title}</h4>
-                                                <p className="font-tahoma text-sm text-gray-400 leading-relaxed">{ep.teaser}</p>
+                                                <p className="font-tahoma text-base text-gray-400 leading-relaxed">{ep.teaser}</p>
                                                 <div className="mt-4 inline-block bg-white/5 border border-white/10 text-white/40 font-cinzel text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full">
                                                     Coming April 2026
                                                 </div>
@@ -156,11 +156,11 @@ export default function PodcastPage() {
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Enter your email"
                             required
-                            className="flex-grow bg-transparent border-b border-white/20 focus:border-fire-orange text-white placeholder:text-white/30 font-tahoma text-sm py-2 px-1 outline-none transition-colors"
+                            className="flex-grow bg-transparent border-b border-white/20 focus:border-fire-orange text-white placeholder:text-white/30 font-tahoma text-base py-2 px-1 outline-none transition-colors"
                         />
                         <button
                             type="submit"
-                            className="shrink-0 text-xs font-cinzel uppercase tracking-widest text-fire-orange hover:text-white border border-fire-orange/40 hover:border-fire-orange px-5 py-2 rounded transition-colors"
+                            className="shrink-0 text-sm font-cinzel uppercase tracking-widest text-fire-orange hover:text-white border border-fire-orange/40 hover:border-fire-orange px-5 py-2 rounded transition-colors"
                         >
                             {submitted ? "✓ You're In" : "Notify Me"}
                         </button>

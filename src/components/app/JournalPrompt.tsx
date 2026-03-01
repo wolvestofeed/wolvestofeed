@@ -36,7 +36,7 @@ export default function JournalPrompt({
     return (
         <div className="w-full mt-4">
             {prompt && (
-                <p className="text-gray-400 text-sm font-tahoma mb-3 leading-relaxed italic">
+                <p className="text-gray-400 text-base font-tahoma mb-3 leading-relaxed italic">
                     {prompt}
                 </p>
             )}
@@ -47,15 +47,15 @@ export default function JournalPrompt({
                     setSaved(false);
                 }}
                 placeholder="Write your reflection here..."
-                className="w-full bg-black/40 border border-white/10 rounded-lg p-4 text-white font-tahoma text-sm leading-relaxed placeholder:text-gray-600 focus:border-aged-gold/50 focus:outline-none transition-colors resize-none min-h-[120px]"
+                className="w-full bg-black/40 border border-white/10 rounded-lg p-4 text-white font-tahoma text-base leading-relaxed placeholder:text-gray-400 focus:border-aged-gold/50 focus:outline-none transition-colors resize-none min-h-[120px]"
             />
             <div className="flex items-center justify-between mt-2">
-                <span className="text-[10px] text-gray-600 font-mono uppercase tracking-wider">
+                <span className="text-[10px] text-gray-400 font-mono uppercase tracking-wider">
                     Saved locally on this device
                 </span>
                 <button
                     onClick={handleSave}
-                    className={`px-4 py-1.5 text-xs font-tahoma uppercase tracking-wider rounded transition-all duration-300 ${saved
+                    className={`px-4 py-1.5 text-sm font-tahoma uppercase tracking-wider rounded transition-all duration-300 ${saved
                         ? "bg-emerald-500/20 text-emerald-400 border border-emerald-400/30"
                         : "bg-white/5 text-gray-400 border border-white/10 hover:border-white/30 hover:text-white"
                         }`}

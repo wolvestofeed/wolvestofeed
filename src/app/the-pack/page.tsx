@@ -198,11 +198,11 @@ export default function ThePackPage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {gatherings.map(g => (
                             <div key={g.id} className="bg-gray-900/50 border border-white/10 rounded-lg p-6 hover:border-aged-gold flex flex-col transition-colors">
-                                <div className="text-fire-orange font-mono text-sm mb-2">{g.date}</div>
+                                <div className="text-fire-orange font-mono text-base mb-2">{g.date}</div>
                                 <h4 className="font-tahoma text-xl text-white mb-2">{g.title}</h4>
-                                <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">{g.topics}</div>
-                                <p className="text-gray-400 text-sm mb-8 flex-grow">{g.description}</p>
-                                <button className="w-full py-2 bg-[rgba(66,153,225,0.2)] text-[#90cdf4] border border-[rgba(66,153,225,0.5)] hover:bg-[rgba(66,153,225,0.4)] transition-colors uppercase font-tahoma tracking-wider text-sm flex items-center justify-center gap-2">
+                                <div className="text-sm text-gray-400 uppercase tracking-wider mb-4">{g.topics}</div>
+                                <p className="text-gray-400 text-base mb-8 flex-grow">{g.description}</p>
+                                <button className="w-full py-2 bg-[rgba(66,153,225,0.2)] text-[#90cdf4] border border-[rgba(66,153,225,0.5)] hover:bg-[rgba(66,153,225,0.4)] transition-colors uppercase font-tahoma tracking-wider text-base flex items-center justify-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-[#63b3ed] animate-pulse"></span>
                                     Secure Ticket
                                 </button>
@@ -226,8 +226,8 @@ export default function ThePackPage() {
                         <div key={idx} className="flex items-center gap-4 p-4 border border-white/5 bg-gray-950 rounded-lg hover:bg-gray-900 transition-colors cursor-pointer group">
                             <Image src={partner.image} alt={partner.name} width={64} height={64} className="rounded-full border border-white/10 group-hover:border-aged-gold transition-colors" />
                             <div>
-                                <h4 className="font-tahoma text-lg text-white group-hover:text-aged-gold transition-colors">{partner.name}</h4>
-                                <p className="text-sm text-gray-500">{partner.expertise}</p>
+                                <h4 className="font-tahoma text-xl text-white group-hover:text-aged-gold transition-colors">{partner.name}</h4>
+                                <p className="text-base text-gray-400">{partner.expertise}</p>
                             </div>
                         </div>
                     ))}

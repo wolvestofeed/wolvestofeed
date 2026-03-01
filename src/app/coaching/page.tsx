@@ -52,7 +52,7 @@ export default function CoachingPage() {
                         {services.map((svc, idx) => (
                             <div key={idx} className="bg-gray-900 border border-white/10 p-6 rounded-lg hover:border-fire-orange transition-colors group">
                                 <h3 className="font-cinzel text-xl text-aged-gold group-hover:text-fire-orange transition-colors mb-3">{svc.name}</h3>
-                                <p className="font-tahoma text-gray-400 text-sm leading-relaxed">{svc.description}</p>
+                                <p className="font-tahoma text-gray-400 text-base leading-relaxed">{svc.description}</p>
                             </div>
                         ))}
                     </div>
@@ -92,15 +92,15 @@ export default function CoachingPage() {
                                 />
                             </div>
                             <h3 className="font-cinzel text-3xl text-aged-gold mb-2 uppercase tracking-widest text-center md:text-left">Joshin Robert Bogatin</h3>
-                            <div className="text-xs text-gray-500 uppercase tracking-[0.2em] mb-4 font-mono text-center md:text-left">Expertise: Fitness, Nutrition, Meditation, Warrior Qigong, Ayurveda</div>
-                            <p className="font-tahoma text-gray-400 text-sm leading-relaxed text-center md:text-left italic">
+                            <div className="text-sm text-gray-400 uppercase tracking-[0.2em] mb-4 font-mono text-center md:text-left">Expertise: Fitness, Nutrition, Meditation, Warrior Qigong, Ayurveda</div>
+                            <p className="font-tahoma text-gray-400 text-base leading-relaxed text-center md:text-left italic">
                                 Focused on the vertical ascent. Specialized in energy cultivation and the physical discipline required to sustain states of high clarity.
                             </p>
                         </div>
 
                         <div className="md:col-span-8 flex flex-col justify-center">
                             <h4 className="font-cinzel text-xl text-white/40 uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Lone Wolf</h4>
-                            <p className="font-tahoma text-gray-400 text-base leading-relaxed">
+                            <p className="font-tahoma text-gray-400 text-lg leading-relaxed">
                                 Joshin is a lifelong entrepreneur, systems designer, martial artist, and student of Zen and contemplative practices. He spent three decades building values-driven small businesses and nonprofit organizations in service of human wellness, sustainability and community. Drawing from his own boom-and-bust cycles, he writes and coaches to offer a radically honest look at how to remain persistent and awake regardless of the outcome of your efforts. Joshin lives in the remote Colorado mountains with his dog, where he continues to practice, hike the high-country, and support other persistent humans in finding meaning beyond conventional success.
                             </p>
                         </div>
@@ -135,15 +135,15 @@ export default function CoachingPage() {
                                             <div className="relative shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-white/10 hover:border-shadow-red transition-all duration-700 mb-8">
                                                 <Image src="https://placehold.co/400x400/1a1a1a/ff4d00.png?text=SHADOW" alt="Brian Winters" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
                                             </div>
-                                            <div className="text-xs text-gray-500 uppercase tracking-[0.2em] mb-4 font-mono text-center md:text-left">Expertise: Yoga, Kundalini, Identity, Meditation, Healing Qigong</div>
-                                            <p className="font-tahoma text-gray-400 text-sm leading-relaxed text-center md:text-left italic">
+                                            <div className="text-sm text-gray-400 uppercase tracking-[0.2em] mb-4 font-mono text-center md:text-left">Expertise: Yoga, Kundalini, Identity, Meditation, Healing Qigong</div>
+                                            <p className="font-tahoma text-gray-400 text-base leading-relaxed text-center md:text-left italic">
                                                 A specialist in the darker terrains of the psyche. Helping you navigate the smoke and reclaim the lost fragments of your true self.
                                             </p>
                                         </div>
 
                                         <div className="md:col-span-8 flex flex-col justify-center">
                                             <h4 className="font-cinzel text-xl text-white/40 uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Pack Wolf</h4>
-                                            <p className="font-tahoma text-gray-400 text-base leading-relaxed">
+                                            <p className="font-tahoma text-gray-400 text-lg leading-relaxed">
                                                 Biography coming soon. Brian&apos;s approach to coaching integrates deep physical discipline with contemplative inquiry, providing a path for those ready to face the shadow and integrate their full story.
                                             </p>
                                         </div>
@@ -159,18 +159,18 @@ export default function CoachingPage() {
                 <div className="mb-24">
                     <div className="text-center md:text-left mb-8 border-b border-white/10 pb-4">
                         <h2 className="font-cinzel text-3xl text-gray-100">Investment</h2>
-                        <p className="font-tahoma text-sm text-gray-500 mt-2 uppercase tracking-[0.2em]">Contact us to schedule your sessions</p>
+                        <p className="font-tahoma text-base text-gray-400 mt-2 uppercase tracking-[0.2em]">Contact us to schedule your sessions</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {pricing.map((pkg, idx) => (
                             <div key={idx} className={`relative flex flex-col p-8 rounded-lg border ${pkg.highlight ? "border-aged-gold shadow-[0_4px_20px_rgba(212,175,55,0.15)] bg-gradient-to-b from-gray-900 to-black" : "border-white/10 bg-gray-950"} transition-all duration-300`}>
                                 {pkg.highlight && (
-                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-aged-gold text-black font-cinzel text-xs py-1 px-4 rounded-full font-bold tracking-widest">RECOMMENDED</div>
+                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-aged-gold text-black font-cinzel text-sm py-1 px-4 rounded-full font-bold tracking-widest">RECOMMENDED</div>
                                 )}
                                 <h3 className="font-cinzel text-2xl text-white mb-2 text-center">{pkg.title}</h3>
                                 <div className="text-center font-tahoma text-aged-gold mb-4 text-4xl">{pkg.price}</div>
-                                <div className="text-center text-gray-400 text-sm mb-6 uppercase tracking-wider">{pkg.time}</div>
-                                <p className="font-tahoma text-gray-400 text-sm text-center flex-grow mb-6">{pkg.description}</p>
+                                <div className="text-center text-gray-400 text-base mb-6 uppercase tracking-wider">{pkg.time}</div>
+                                <p className="font-tahoma text-gray-400 text-base text-center flex-grow mb-6">{pkg.description}</p>
                                 <CheckoutButton
                                     priceId={pkg.priceId}
                                     label="Book Now"

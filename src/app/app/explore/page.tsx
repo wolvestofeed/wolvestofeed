@@ -24,6 +24,11 @@ function ExploreContent() {
     const [activeMood, setActiveMood] = useState<string | null>(moodParam);
     const activeMoodData = activeMood ? getMoodById(activeMood) : null;
 
+    // Reset scroll position on load and filter changes
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }, [activeMood, edgeParam, leverParam]); // trigger on filter dependency changes
+
     // URL param seeds context on mount only
     useEffect(() => {
         if (modeUrlParam) {
@@ -70,7 +75,7 @@ function ExploreContent() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className={`inline-block text-xs font-mono uppercase tracking-[0.3em] mb-3 px-3 py-1 rounded-full border ${isRightNow
+                        className={`inline-block text-sm font-mono uppercase tracking-[0.3em] mb-3 px-3 py-1 rounded-full border ${isRightNow
                             ? "text-fire-orange/70 border-fire-orange/20 bg-fire-orange/5"
                             : "text-aged-gold/70 border-aged-gold/20 bg-aged-gold/5"
                             }`}
@@ -84,14 +89,14 @@ function ExploreContent() {
                 </h1>
 
                 {activeMoodData ? (
-                    <p className="text-sm font-tahoma text-gray-400">
+                    <p className="text-base font-tahoma text-gray-400">
                         {isRightNow ? "Tools for when you\u0027re feeling " : "Showing exercises for feeling "}
                         <span className={activeMoodData.color.split(" ")[1]}>
                             {activeMoodData.icon} {activeMoodData.label}
                         </span>
                     </p>
                 ) : (
-                    <p className="text-sm font-tahoma text-gray-500">
+                    <p className="text-base font-tahoma text-gray-400">
                         {isRightNow
                             ? "One small practice to interrupt the spiral"
                             : "Browse all tools from the Edges of Greatness framework"}
@@ -112,7 +117,7 @@ function ExploreContent() {
             </div>
 
             {/* Results count */}
-            <div className="text-[10px] text-gray-600 uppercase tracking-widest font-mono mb-4 px-1">
+            <div className="text-[10px] text-gray-400 uppercase tracking-widest font-mono mb-4 px-1">
                 {filteredExercises.length} exercise{filteredExercises.length !== 1 ? "s" : ""}
             </div>
 
@@ -134,7 +139,7 @@ function ExploreContent() {
                     animate={{ opacity: 1 }}
                     className="text-center py-16"
                 >
-                    <p className="text-gray-500 font-tahoma text-sm">
+                    <p className="text-gray-400 font-tahoma text-base">
                         No exercises match these filters. Try broadening your selection.
                     </p>
                 </motion.div>
@@ -149,12 +154,12 @@ function ExploreContent() {
                     className="mt-12 text-center"
                 >
                     <div className="w-px h-8 bg-gradient-to-b from-white/10 to-transparent mx-auto mb-4" />
-                    <p className="text-gray-600 text-xs font-tahoma mb-3">
+                    <p className="text-gray-400 text-sm font-tahoma mb-3">
                         Ready to go deeper?
                     </p>
                     <a
                         href="/app/explore?mode=journey"
-                        className="inline-flex items-center gap-2 text-aged-gold/70 text-xs font-mono uppercase tracking-widest hover:text-aged-gold transition-colors border border-aged-gold/20 px-5 py-2 rounded-lg hover:border-aged-gold/40"
+                        className="inline-flex items-center gap-2 text-aged-gold/70 text-sm font-mono uppercase tracking-widest hover:text-aged-gold transition-colors border border-aged-gold/20 px-5 py-2 rounded-lg hover:border-aged-gold/40"
                     >
                         Workbook Journey <ArrowRight className="w-3 h-3" />
                     </a>
@@ -169,7 +174,7 @@ export default function ExplorePage() {
         <Suspense
             fallback={
                 <div className="min-h-screen flex items-center justify-center">
-                    <div className="text-gray-600 font-tahoma text-sm">Loading...</div>
+                    <div className="text-gray-400 font-tahoma text-base">Loading...</div>
                 </div>
             }
         >

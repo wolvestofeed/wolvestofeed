@@ -56,7 +56,7 @@ function AppNav() {
             <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
                 <Link
                     href="/app"
-                    className="font-cinzel text-sm text-aged-gold/80 hover:text-aged-gold transition-colors tracking-widest uppercase"
+                    className="font-cinzel text-base text-aged-gold/80 hover:text-aged-gold transition-colors tracking-widest uppercase"
                 >
                     Choice Point
                 </Link>
@@ -64,19 +64,19 @@ function AppNav() {
                 <div className="flex items-center gap-4">
                     <Link
                         href={`/app/explore${modeParam}`}
-                        className="text-[11px] text-gray-500 hover:text-white/70 transition-colors uppercase tracking-wider font-tahoma"
+                        className="text-[11px] text-gray-400 hover:text-white/70 transition-colors uppercase tracking-wider font-tahoma"
                     >
                         Explore
                     </Link>
                     <Link
                         href={`/app/journey${modeParam}`}
-                        className="text-[11px] text-gray-500 hover:text-white/70 transition-colors uppercase tracking-wider font-tahoma"
+                        className="text-[11px] text-gray-400 hover:text-white/70 transition-colors uppercase tracking-wider font-tahoma"
                     >
                         Journey
                     </Link>
                     <Link
                         href="/"
-                        className="text-gray-600 hover:text-white/50 transition-colors"
+                        className="text-gray-400 hover:text-white/50 transition-colors"
                         title="Back to main site"
                     >
                         <Home className="w-4 h-4" />
@@ -113,7 +113,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                         className="fixed bottom-24 md:bottom-20 right-6 z-40 w-12 h-12 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center hover:border-spirit-blue/50 transition-all group shadow-lg"
                         title="Breathe"
                     >
-                        <Wind className="w-5 h-5 text-gray-500 group-hover:text-spirit-blue transition-colors" />
+                        <Wind className="w-5 h-5 text-gray-400 group-hover:text-spirit-blue transition-colors" />
                     </Link>
                 </div>
                 <GlobalAudioPlayer />

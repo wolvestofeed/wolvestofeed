@@ -31,7 +31,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Menu Section */}
-                <div className="flex items-center gap-8 lg:gap-12 font-tahoma text-[11px] lg:text-xs uppercase tracking-[0.2em] shrink-0">
+                <div className="flex items-center gap-8 lg:gap-12 font-tahoma text-[11px] lg:text-sm uppercase tracking-[0.2em] shrink-0">
                     {navLinks.map((link) => {
                         const isActive = pathname === link.href;
                         const isSpecial = 'special' in link && link.special;

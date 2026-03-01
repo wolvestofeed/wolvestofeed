@@ -25,9 +25,9 @@ export default function GlobalAudioPlayer() {
 
                 {/* Track Info */}
                 <div className="flex-1 min-w-0">
-                    <h4 className="text-white text-sm font-tahoma truncate">{currentTrack.title}</h4>
+                    <h4 className="text-white text-base font-tahoma truncate">{currentTrack.title}</h4>
                     {currentTrack.subtitle && (
-                        <p className="text-gray-400 text-xs font-tahoma truncate">{currentTrack.subtitle}</p>
+                        <p className="text-gray-400 text-sm font-tahoma truncate">{currentTrack.subtitle}</p>
                     )}
                 </div>
 
@@ -46,7 +46,7 @@ export default function GlobalAudioPlayer() {
 
                     <button
                         onClick={clearTrack}
-                        className="p-2 text-gray-500 hover:text-white transition-colors"
+                        className="p-2 text-gray-400 hover:text-white transition-colors"
                         title="Close Player"
                     >
                         <X className="w-5 h-5" />
@@ -56,7 +56,7 @@ export default function GlobalAudioPlayer() {
 
             {/* Progress Bar */}
             <div className="max-w-4xl mx-auto mt-2 flex items-center gap-3">
-                <span className="text-[10px] text-gray-500 font-mono w-8 text-right">{formatTime(currentTime)}</span>
+                <span className="text-[10px] text-gray-400 font-mono w-8 text-right">{formatTime(currentTime)}</span>
                 <input
                     type="range"
                     min={0}
@@ -65,7 +65,7 @@ export default function GlobalAudioPlayer() {
                     onChange={handleProgressChange}
                     className="flex-1 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full"
                 />
-                <span className="text-[10px] text-gray-500 font-mono w-8">{formatTime(duration)}</span>
+                <span className="text-[10px] text-gray-400 font-mono w-8">{formatTime(duration)}</span>
             </div>
         </div>
     );

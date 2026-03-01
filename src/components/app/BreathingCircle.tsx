@@ -81,7 +81,7 @@ export default function BreathingCircle({
                 className="flex flex-col items-center gap-6"
             >
                 <div className="text-aged-gold font-cinzel text-2xl">You are here.</div>
-                <p className="text-gray-400 text-sm font-tahoma">
+                <p className="text-gray-400 text-base font-tahoma">
                     {cycles} cycles complete. You have a choice point now.
                 </p>
             </motion.div>
@@ -128,7 +128,7 @@ export default function BreathingCircle({
                     >
                         {phase.label}
                     </motion.div>
-                    <div className="text-white/40 text-sm mt-1 font-mono">{secondsLeft}</div>
+                    <div className="text-white/40 text-base mt-1 font-mono">{secondsLeft}</div>
                 </div>
             </div>
 
@@ -147,7 +147,7 @@ export default function BreathingCircle({
                 ))}
             </div>
 
-            <p className="text-gray-500 text-xs uppercase tracking-widest font-tahoma">
+            <p className="text-gray-400 text-sm uppercase tracking-widest font-tahoma">
                 Cycle {cycleCount + 1} of {cycles}
             </p>
         </div>

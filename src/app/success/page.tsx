@@ -40,13 +40,13 @@ function SuccessContent() {
             <p className="font-tahoma text-xl text-gray-300 max-w-2xl leading-relaxed mb-4">
                 The pack grows.
             </p>
-            <p className="font-tahoma text-base text-gray-500 max-w-xl leading-relaxed mb-12">
+            <p className="font-tahoma text-lg text-gray-400 max-w-xl leading-relaxed mb-12">
                 Your order is being processed. A confirmation will be sent to your email.
                 The wisdom you seek is on its way.
             </p>
 
             {sessionId && (
-                <p className="font-mono text-xs text-white/20 mb-12">
+                <p className="font-mono text-sm text-white/20 mb-12">
                     Reference: {sessionId}
                 </p>
             )}

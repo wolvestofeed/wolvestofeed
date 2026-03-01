@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { BookOpen, Zap } from "lucide-react";
@@ -18,12 +18,29 @@ export default function ChoicePointPage() {
     const [localMode, setLocalMode] = useState<AppMode | null>(null);
     const { setMode: setContextMode } = useAppMode();
     const router = useRouter();
-    const { playTrack } = useAudioPlayer();
+    const { playTrack, clearTrack, currentTrack } = useAudioPlayer();
 
     // Reset scroll on stage change
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, [stage]);
+
+    // Keep refs stable for unmount cleanup
+    const trackRef = useRef(currentTrack);
+    const clearRef = useRef(clearTrack);
+    useEffect(() => {
+        trackRef.current = currentTrack;
+        clearRef.current = clearTrack;
+    }, [currentTrack, clearTrack]);
+
+    // Cleanup audio strictly ONLY on true unmount of this page
+    useEffect(() => {
+        return () => {
+            if (trackRef.current?.title === "Choice Point Intro") {
+                clearRef.current();
+            }
+        };
+    }, []);
 
     const triggerIntroAudio = () => {
         // Double check we haven't already transitioned to a new track like an exercise!
@@ -84,7 +101,7 @@ export default function ChoicePointPage() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.8, duration: 0.8 }}
-                                className="text-gray-500 text-sm font-tahoma"
+                                className="text-gray-400 text-base font-tahoma"
                             >
                                 You have a choice point.
                             </motion.p>
@@ -103,7 +120,7 @@ export default function ChoicePointPage() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 2, duration: 0.5 }}
                             onClick={handleSkip}
-                            className="text-gray-700 text-xs font-tahoma uppercase tracking-widest hover:text-gray-500 transition-colors"
+                            className="text-gray-400 text-sm font-tahoma uppercase tracking-widest hover:text-gray-400 transition-colors"
                         >
                             Skip to exercises →
                         </motion.button>
@@ -121,18 +138,10 @@ export default function ChoicePointPage() {
                         className="flex flex-col items-center gap-10 w-full max-w-2xl"
                     >
                         <div className="text-center">
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.2 }}
-                                className="text-aged-gold/60 text-xs font-mono uppercase tracking-[0.3em] mb-3"
-                            >
-                                You are here
-                            </motion.div>
                             <h1 className="font-cinzel text-2xl md:text-4xl text-white/90 mb-2">
                                 What brings you here?
                             </h1>
-                            <p className="text-gray-500 text-sm font-tahoma max-w-md mx-auto">
+                            <p className="text-gray-400 text-base font-tahoma max-w-md mx-auto">
                                 Two paths, same tools. Choose what fits this moment.
                             </p>
                         </div>
@@ -150,18 +159,18 @@ export default function ChoicePointPage() {
                                 <div className="absolute top-4 right-4">
                                     <Zap className="w-5 h-5 text-fire-orange/40 group-hover:text-fire-orange/70 transition-colors" />
                                 </div>
-                                <h2 className="font-cinzel text-lg text-fire-orange mb-2">
+                                <h2 className="font-cinzel text-xl text-fire-orange mb-2">
                                     Right Now Support
                                 </h2>
-                                <p className="text-gray-400 text-sm font-tahoma leading-relaxed mb-4">
+                                <p className="text-gray-400 text-base font-tahoma leading-relaxed mb-4">
                                     Something just hit. You&apos;re activated, spun up, or shutting down.
                                 </p>
-                                <p className="text-gray-600 text-xs font-tahoma leading-relaxed">
+                                <p className="text-gray-400 text-sm font-tahoma leading-relaxed">
                                     This space is not for fixing your whole life. It&apos;s for the next few minutes.
                                     Take the breath, name your mood, and let one small practice interrupt the spiral.
                                     We&apos;ll work with three levers—mind, heart, body—to give you just enough room to choose your next move.
                                 </p>
-                                <div className="mt-4 text-fire-orange/60 text-xs font-mono uppercase tracking-widest group-hover:text-fire-orange/90 transition-colors">
+                                <div className="mt-4 text-fire-orange/60 text-sm font-mono uppercase tracking-widest group-hover:text-fire-orange/90 transition-colors">
                                     Name what&apos;s happening →
                                 </div>
                             </motion.button>
@@ -177,18 +186,18 @@ export default function ChoicePointPage() {
                                 <div className="absolute top-4 right-4">
                                     <BookOpen className="w-5 h-5 text-aged-gold/40 group-hover:text-aged-gold/70 transition-colors" />
                                 </div>
-                                <h2 className="font-cinzel text-lg text-aged-gold mb-2">
+                                <h2 className="font-cinzel text-xl text-aged-gold mb-2">
                                     Workbook Journey
                                 </h2>
-                                <p className="text-gray-400 text-sm font-tahoma leading-relaxed mb-4">
+                                <p className="text-gray-400 text-base font-tahoma leading-relaxed mb-4">
                                     Map your edges. Work the domains. Redesign the system.
                                 </p>
-                                <p className="text-gray-600 text-xs font-tahoma leading-relaxed">
+                                <p className="text-gray-400 text-sm font-tahoma leading-relaxed">
                                     The companion to <em>Edges of Greatness</em> — domain-by-domain exploration
                                     through Spirit, Career, Body, Intimacy, and Legacy. Animal medicine,
                                     Signal-System-Lever, and long-form reflection.
                                 </p>
-                                <div className="mt-4 text-aged-gold/60 text-xs font-mono uppercase tracking-widest group-hover:text-aged-gold/90 transition-colors">
+                                <div className="mt-4 text-aged-gold/60 text-sm font-mono uppercase tracking-widest group-hover:text-aged-gold/90 transition-colors">
                                     Begin the work →
                                 </div>
                             </motion.button>
@@ -210,14 +219,14 @@ export default function ChoicePointPage() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.2 }}
-                                className="text-fire-orange/60 text-xs font-mono uppercase tracking-[0.3em] mb-3"
+                                className="text-fire-orange/60 text-sm font-mono uppercase tracking-[0.3em] mb-3"
                             >
                                 Right Now Support
                             </motion.div>
                             <h1 className="font-cinzel text-2xl md:text-4xl text-white/90 mb-2">
                                 What are you feeling?
                             </h1>
-                            <p className="text-gray-500 text-sm font-tahoma max-w-md mx-auto">
+                            <p className="text-gray-400 text-base font-tahoma max-w-md mx-auto">
                                 Name it. That&apos;s the first lever.
                             </p>
                         </div>
@@ -228,7 +237,7 @@ export default function ChoicePointPage() {
                             <div className="w-px h-8 bg-gradient-to-b from-white/10 to-transparent" />
                             <button
                                 onClick={() => router.push("/app/explore?mode=rightnow")}
-                                className="text-gray-500 text-xs font-tahoma uppercase tracking-widest hover:text-fire-orange transition-colors border border-white/10 px-6 py-2 rounded-lg hover:border-fire-orange/30"
+                                className="text-gray-400 text-sm font-tahoma uppercase tracking-widest hover:text-fire-orange transition-colors border border-white/10 px-6 py-2 rounded-lg hover:border-fire-orange/30"
                             >
                                 Browse All Exercises
                             </button>

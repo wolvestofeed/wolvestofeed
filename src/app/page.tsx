@@ -55,7 +55,7 @@ export default function Home() {
       <div className="w-full py-6 md:py-10 border-b border-white/5 flex flex-col items-center justify-center relative z-20 bg-obsidian">
         <h2 className="font-cinzel text-xl md:text-3xl lg:text-4xl text-aged-gold tracking-[0.1em] md:tracking-[0.2em] text-center px-8 leading-tight uppercase drop-shadow-2xl">
           Integrated Wellness Collective <br className="hidden md:block" />
-          <span className="text-white/80 text-base md:text-xl font-bold mt-4 block tracking-[0.3em] md:tracking-[0.5em]">
+          <span className="text-white/80 text-lg md:text-xl font-bold mt-4 block tracking-[0.3em] md:tracking-[0.5em]">
             For Men In Mid-Life
           </span>
         </h2>
@@ -110,7 +110,7 @@ export default function Home() {
                 <p className="font-tahoma text-xl text-gray-300 drop-shadow-md leading-relaxed">
                   Embrace the untamed self. Navigate the distractions and confront your raw nature in the smoke.
                 </p>
-                <Link href="/publishing" className="inline-block mt-8 px-10 py-4 border border-[#b0c4b0] text-[#b0c4b0] hover:bg-[#b0c4b0]/10 transition-colors font-tahoma uppercase tracking-widest text-sm smoke-effect backdrop-blur-md">
+                <Link href="/publishing" className="inline-block mt-8 px-10 py-4 border border-[#b0c4b0] text-[#b0c4b0] hover:bg-[#b0c4b0]/10 transition-colors font-tahoma uppercase tracking-widest text-base smoke-effect backdrop-blur-md">
                   Enter The Smoke&apos;s Center
                 </Link>
               </div>
@@ -153,7 +153,7 @@ export default function Home() {
                 <p className="font-tahoma text-xl text-blue-50 drop-shadow-md leading-relaxed">
                   Ignite creation. Integrate the self through discipline, focus, and illumination required to walk your path.
                 </p>
-                <Link href="/coaching" className="inline-block mt-8 px-10 py-4 bg-fire-orange/20 border border-fire-orange text-white hover:bg-fire-orange transition-colors font-tahoma uppercase tracking-widest text-sm ember-effect backdrop-blur-md">
+                <Link href="/coaching" className="inline-block mt-8 px-10 py-4 bg-fire-orange/20 border border-fire-orange text-white hover:bg-fire-orange transition-colors font-tahoma uppercase tracking-widest text-base ember-effect backdrop-blur-md">
                   Seek The Fire
                 </Link>
               </div>

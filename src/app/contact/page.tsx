@@ -31,13 +31,13 @@ export default function ContactPage() {
                 <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 text-center md:text-left">
                     <div className="border-l border-aged-gold/30 pl-8">
                         <h3 className="font-cinzel text-xl text-aged-gold mb-4 uppercase">Direct Contact</h3>
-                        <p className="font-tahoma text-gray-400 text-sm">
+                        <p className="font-tahoma text-gray-400 text-base">
                             For urgent matters or specific inquiries regarding the Collective, please reach out via the form above.
                         </p>
                     </div>
                     <div className="border-l border-aged-gold/30 pl-8">
                         <h3 className="font-cinzel text-xl text-aged-gold mb-4 uppercase">Frequency</h3>
-                        <p className="font-tahoma text-gray-400 text-sm">
+                        <p className="font-tahoma text-gray-400 text-base">
                             We aim to respond to all transmissions within 48 hours of reception.
                         </p>
                     </div>

@@ -84,8 +84,8 @@ function ExerciseContent() {
         return (
             <div className="min-h-[calc(100vh-3.5rem)] flex items-center justify-center">
                 <div className="text-center">
-                    <p className="text-gray-500 font-tahoma text-sm mb-4">Exercise not found.</p>
-                    <Link href="/app/explore" className="text-aged-gold text-sm hover:underline">
+                    <p className="text-gray-400 font-tahoma text-base mb-4">Exercise not found.</p>
+                    <Link href="/app/explore" className="text-aged-gold text-base hover:underline">
                         ← Back to exercises
                     </Link>
                 </div>
@@ -109,7 +109,7 @@ function ExerciseContent() {
                     <h2 className="font-cinzel text-2xl md:text-3xl text-aged-gold mb-4">
                         {isRightNow ? "You Showed Up" : "Exercise Complete"}
                     </h2>
-                    <p className="text-gray-400 font-tahoma text-sm leading-relaxed mb-8">
+                    <p className="text-gray-400 font-tahoma text-base leading-relaxed mb-8">
                         {isRightNow
                             ? "You interrupted the spiral. You gave yourself a choice point. That's enough for right now."
                             : "You showed up. You did the work. That's the edge of greatness — not the breakthrough, but the willingness to persist."}
@@ -118,14 +118,14 @@ function ExerciseContent() {
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <button
                             onClick={() => setCompleted(false)}
-                            className="flex items-center justify-center gap-2 px-5 py-2 text-sm font-tahoma uppercase tracking-wider rounded border border-white/10 text-gray-400 hover:text-white hover:border-white/30 transition-all"
+                            className="flex items-center justify-center gap-2 px-5 py-2 text-base font-tahoma uppercase tracking-wider rounded border border-white/10 text-gray-400 hover:text-white hover:border-white/30 transition-all"
                         >
                             <RotateCcw className="w-4 h-4" />
                             Do Again
                         </button>
                         <button
                             onClick={() => router.push(`/app/explore?mode=${contextMode}`)}
-                            className="px-5 py-2 text-sm font-tahoma uppercase tracking-wider rounded bg-aged-gold/20 border border-aged-gold text-aged-gold hover:bg-aged-gold/30 transition-all"
+                            className="px-5 py-2 text-base font-tahoma uppercase tracking-wider rounded bg-aged-gold/20 border border-aged-gold text-aged-gold hover:bg-aged-gold/30 transition-all"
                         >
                             Explore More
                         </button>
@@ -139,12 +139,12 @@ function ExerciseContent() {
                             transition={{ delay: 0.6 }}
                             className="mt-8 pt-6 border-t border-white/5"
                         >
-                            <p className="text-gray-600 text-xs font-tahoma mb-3">
+                            <p className="text-gray-400 text-sm font-tahoma mb-3">
                                 Want to unpack the pattern underneath?
                             </p>
                             <Link
                                 href={`/app/exercise/${exercise.id}?mode=journey`}
-                                className="inline-flex items-center gap-2 text-aged-gold/70 text-xs font-mono uppercase tracking-widest hover:text-aged-gold transition-colors"
+                                className="inline-flex items-center gap-2 text-aged-gold/70 text-sm font-mono uppercase tracking-widest hover:text-aged-gold transition-colors"
                             >
                                 Go deeper in Workbook mode <ArrowRight className="w-3 h-3" />
                             </Link>
@@ -160,7 +160,7 @@ function ExerciseContent() {
             {/* Back link */}
             <Link
                 href={`/app/explore?mode=${contextMode}`}
-                className="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-gray-400 transition-colors mb-8 font-tahoma uppercase tracking-wider"
+                className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-400 transition-colors mb-8 font-tahoma uppercase tracking-wider"
             >
                 <ArrowLeft className="w-3 h-3" />
                 Back
@@ -199,14 +199,14 @@ function ExerciseContent() {
                 <h1 className="font-cinzel text-2xl md:text-4xl text-white mb-2">
                     {exercise.title}
                 </h1>
-                <p className="text-gray-500 text-sm font-tahoma mb-4">
+                <p className="text-gray-400 text-base font-tahoma mb-4">
                     {isRightNow && exercise.rightNowSubtitle
                         ? exercise.rightNowSubtitle
                         : exercise.subtitle}
                 </p>
 
                 {/* Meta */}
-                <div className="flex items-center justify-center gap-4 text-[10px] text-gray-600 font-mono uppercase tracking-wider">
+                <div className="flex items-center justify-center gap-4 text-[10px] text-gray-400 font-mono uppercase tracking-wider">
                     <span>{leverLabels[exercise.lever] || exercise.lever}</span>
                     <span>•</span>
                     <span>{exercise.duration} min</span>
@@ -226,7 +226,7 @@ function ExerciseContent() {
                     }`}
             >
                 <div className="flex flex-col gap-4">
-                    <p className="text-gray-400 font-tahoma text-sm leading-relaxed">
+                    <p className="text-gray-400 font-tahoma text-base leading-relaxed">
                         {description}
                     </p>
 
@@ -238,7 +238,7 @@ function ExerciseContent() {
                                 subtitle: "Right Now Support",
                                 url: exercise.rightNowIntroAudio!
                             })}
-                            className="flex items-center gap-2 self-start px-4 py-2 mt-2 bg-fire-orange/10 border border-fire-orange/30 text-fire-orange hover:bg-fire-orange/20 rounded-md text-xs font-mono uppercase tracking-wider transition-colors"
+                            className="flex items-center gap-2 self-start px-4 py-2 mt-2 bg-fire-orange/10 border border-fire-orange/30 text-fire-orange hover:bg-fire-orange/20 rounded-md text-sm font-mono uppercase tracking-wider transition-colors"
                         >
                             <Play className="w-4 h-4" />
                             {currentTrack?.url === exercise.rightNowIntroAudio ? "Playing Intro..." : "Listen to Intro"}
@@ -255,19 +255,19 @@ function ExerciseContent() {
                     className="mb-10 p-6 rounded-xl border border-fire-orange/30 bg-fire-orange/5 text-center"
                 >
                     <h3 className="font-cinzel text-xl text-white mb-2">How would you like to proceed?</h3>
-                    <p className="text-gray-400 text-sm font-tahoma mb-6 max-w-md mx-auto">
+                    <p className="text-gray-400 text-base font-tahoma mb-6 max-w-md mx-auto">
                         Choose auto-guided to have the steps and reflection timers play automatically, or manual to click through at your own pace.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button
                             onClick={() => handleSelectGuidedMode(true)}
-                            className="px-6 py-3 bg-fire-orange/20 border border-fire-orange/50 text-fire-orange hover:bg-fire-orange/30 rounded text-sm font-mono uppercase tracking-wider transition-colors"
+                            className="px-6 py-3 bg-fire-orange/20 border border-fire-orange/50 text-fire-orange hover:bg-fire-orange/30 rounded text-base font-mono uppercase tracking-wider transition-colors"
                         >
                             Auto-Guided Sequence
                         </button>
                         <button
                             onClick={() => handleSelectGuidedMode(false)}
-                            className="px-6 py-3 bg-white/5 border border-white/20 text-white hover:bg-white/10 rounded text-sm font-mono uppercase tracking-wider transition-colors"
+                            className="px-6 py-3 bg-white/5 border border-white/20 text-white hover:bg-white/10 rounded text-base font-mono uppercase tracking-wider transition-colors"
                         >
                             Manual Steps
                         </button>
@@ -299,7 +299,7 @@ export default function ExercisePage() {
         <Suspense
             fallback={
                 <div className="min-h-screen flex items-center justify-center">
-                    <div className="text-gray-600 font-tahoma text-sm">Loading...</div>
+                    <div className="text-gray-400 font-tahoma text-base">Loading...</div>
                 </div>
             }
         >

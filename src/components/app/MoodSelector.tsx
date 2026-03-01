@@ -22,10 +22,10 @@ export default function MoodSelector({
                         className={`group relative flex flex-col items-center gap-3 p-5 rounded-xl border bg-black/40 backdrop-blur-sm hover:bg-white/5 transition-all duration-300 cursor-pointer ${mood.color}`}
                     >
                         <span className="text-3xl">{mood.icon}</span>
-                        <span className="font-cinzel text-sm tracking-wider uppercase text-white/90">
+                        <span className="font-cinzel text-base tracking-wider uppercase text-white/90">
                             {mood.label}
                         </span>
-                        <span className="text-[11px] text-gray-500 font-tahoma leading-snug text-center hidden md:block">
+                        <span className="text-[11px] text-gray-400 font-tahoma leading-snug text-center hidden md:block">
                             {mood.description}
                         </span>
                     </motion.button>

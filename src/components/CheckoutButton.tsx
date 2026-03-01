@@ -92,7 +92,7 @@ export default function CheckoutButton({
                 )}
             </button>
             {error && (
-                <p className="text-red-400 text-xs font-tahoma text-center">{error}</p>
+                <p className="text-red-400 text-sm font-tahoma text-center">{error}</p>
             )}
         </div>
     );

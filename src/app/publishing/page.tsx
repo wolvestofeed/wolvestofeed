@@ -84,7 +84,7 @@ export default function PublishingPage() {
                                 className={`w-full text-left p-6 rounded-lg border transition-all duration-300 ${activeBook === "book1" ? "bg-gray-900 border-aged-gold shadow-[0_4px_20px_rgba(212,175,55,0.1)]" : "bg-black/50 border-white/5 hover:border-white/20"}`}
                             >
                                 <div className="font-cinzel text-xl text-white mb-2">{books.book1.title}</div>
-                                <div className="font-tahoma text-sm text-aged-gold uppercase tracking-wider">{books.book1.subtitle}</div>
+                                <div className="font-tahoma text-base text-aged-gold uppercase tracking-wider">{books.book1.subtitle}</div>
                             </button>
 
                             <button
@@ -92,7 +92,7 @@ export default function PublishingPage() {
                                 className={`w-full text-left p-6 rounded-lg border transition-all duration-300 ${activeBook === "book2" ? "bg-gray-900 border-fire-orange shadow-[0_4px_20px_rgba(226,88,34,0.1)]" : "bg-black/50 border-white/5 hover:border-white/20"}`}
                             >
                                 <div className="font-cinzel text-xl text-white mb-2">{books.book2.title}</div>
-                                <div className="font-tahoma text-sm text-fire-orange uppercase tracking-wider">{books.book2.subtitle}</div>
+                                <div className="font-tahoma text-base text-fire-orange uppercase tracking-wider">{books.book2.subtitle}</div>
                             </button>
 
                             <button
@@ -100,7 +100,7 @@ export default function PublishingPage() {
                                 className={`w-full text-left p-6 rounded-lg border transition-all duration-300 ${activeBook === "book3" ? "bg-gray-900 border-white shadow-[0_4px_20px_rgba(255,255,255,0.1)]" : "bg-black/50 border-white/5 hover:border-white/20"}`}
                             >
                                 <div className="font-cinzel text-xl text-white mb-2">{books.book3.title}</div>
-                                <div className="font-tahoma text-sm text-white/70 uppercase tracking-wider mb-2">{books.book3.subtitle}</div>
+                                <div className="font-tahoma text-base text-white/70 uppercase tracking-wider mb-2">{books.book3.subtitle}</div>
                                 <div className="inline-block bg-fire-orange text-white text-[10px] px-2 py-0.5 rounded font-bold">14% BUNDLE SAVINGS</div>
                             </button>
                         </div>
@@ -130,7 +130,7 @@ export default function PublishingPage() {
 
                                 </div>
                             </div>
-                            <p className="font-tahoma text-sm text-gray-500 mt-6 italic bg-white/5 px-4 py-1 rounded-full border border-white/10">Click book to view {isFlipped ? "front" : "back"} cover</p>
+                            <p className="font-tahoma text-base text-gray-400 mt-6 italic bg-white/5 px-4 py-1 rounded-full border border-white/10">Click book to view {isFlipped ? "front" : "back"} cover</p>
                         </div>
 
                         {/* Book Details & Excerpt Box */}
@@ -140,8 +140,8 @@ export default function PublishingPage() {
 
                             <div className="flex-grow bg-black/60 border border-white/10 rounded-lg p-6 mb-8 relative">
                                 <div className="absolute top-0 left-0 w-full h-6 bg-gradient-to-b from-black/80 to-transparent pointer-events-none rounded-t-lg z-10" />
-                                <h4 className="font-cinzel text-sm text-aged-gold mb-4 uppercase tracking-widest border-b border-white/10 pb-2">Read an Excerpt</h4>
-                                <div className="h-48 overflow-y-auto pr-4 font-tahoma text-gray-300 leading-relaxed text-sm scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent whitespace-pre-line">
+                                <h4 className="font-cinzel text-base text-aged-gold mb-4 uppercase tracking-widest border-b border-white/10 pb-2">Read an Excerpt</h4>
+                                <div className="h-48 overflow-y-auto pr-4 font-tahoma text-gray-300 leading-relaxed text-base scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent whitespace-pre-line">
                                     {currentBook.excerpt}
                                 </div>
                                 <div className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none rounded-b-lg z-10" />
@@ -162,8 +162,8 @@ export default function PublishingPage() {
                                 <div className="bg-black/40 border border-fire-orange/30 p-4 rounded-lg flex items-start gap-3">
                                     <span className="text-fire-orange text-xl mt-0.5" aria-hidden="true">🔥</span>
                                     <div>
-                                        <h5 className="font-cinzel text-fire-orange text-sm font-bold tracking-wider uppercase mb-1">Pre-Order Phase</h5>
-                                        <p className="font-tahoma text-gray-400 text-xs leading-relaxed">
+                                        <h5 className="font-cinzel text-fire-orange text-base font-bold tracking-wider uppercase mb-1">Pre-Order Phase</h5>
+                                        <p className="font-tahoma text-gray-400 text-sm leading-relaxed">
                                             Physical editions are currently at the printer. All orders placed today will ship in March.
                                         </p>
                                     </div>
