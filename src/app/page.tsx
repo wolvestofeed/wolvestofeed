@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     // Check if user has already seen the intro this session
     const hasSeenIntro = sessionStorage.getItem("wtf-intro-seen");
-    setIntroComplete(!!hasSeenIntro);
+    setTimeout(() => setIntroComplete(!!hasSeenIntro), 0);
   }, []);
 
   const handleIntroComplete = () => {

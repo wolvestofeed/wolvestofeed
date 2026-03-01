@@ -26,9 +26,9 @@ export default function ModeProvider({ children }: { children: React.ReactNode }
     useEffect(() => {
         const stored = localStorage.getItem("choicepoint-mode");
         if (stored === "rightnow" || stored === "journey") {
-            setModeState(stored);
+            setTimeout(() => setModeState(stored as AppMode), 0);
         }
-        setLoaded(true);
+        setTimeout(() => setLoaded(true), 0);
     }, []);
 
     const setMode = useCallback((m: AppMode) => {

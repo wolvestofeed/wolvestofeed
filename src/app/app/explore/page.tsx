@@ -53,7 +53,7 @@ function ExploreContent() {
     };
 
     const filteredExercises = useMemo(() => {
-        let result = filterExercises({
+        const result = filterExercises({
             edge: selectedEdge ?? undefined,
             lever: selectedLever ?? undefined,
             mood: activeMood ?? undefined,

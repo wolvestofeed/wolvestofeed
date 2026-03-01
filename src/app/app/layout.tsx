@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Wind, Home, Zap, BookOpen } from "lucide-react";
 import ModeProvider, { useAppMode } from "@/components/app/ModeProvider";
+import { AudioPlayerProvider } from "@/components/app/AudioPlayerProvider";
+import GlobalAudioPlayer from "@/components/app/GlobalAudioPlayer";
 
 function ModeIndicator() {
     const { mode, setMode } = useAppMode();
@@ -11,8 +13,8 @@ function ModeIndicator() {
     return (
         <div
             className={`fixed top-14 left-0 right-0 z-40 transition-colors duration-500 ${isRightNow
-                    ? "bg-fire-orange/10 border-b border-fire-orange/20"
-                    : "bg-aged-gold/[0.06] border-b border-aged-gold/10"
+                ? "bg-fire-orange/10 border-b border-fire-orange/20"
+                : "bg-aged-gold/[0.06] border-b border-aged-gold/10"
                 }`}
         >
             <div className="max-w-4xl mx-auto px-4 h-8 flex items-center justify-between">
@@ -34,8 +36,8 @@ function ModeIndicator() {
                 <button
                     onClick={() => setMode(isRightNow ? "journey" : "rightnow")}
                     className={`text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border transition-all ${isRightNow
-                            ? "text-aged-gold/50 border-aged-gold/20 hover:text-aged-gold hover:border-aged-gold/40"
-                            : "text-fire-orange/50 border-fire-orange/20 hover:text-fire-orange hover:border-fire-orange/40"
+                        ? "text-aged-gold/50 border-aged-gold/20 hover:text-aged-gold hover:border-aged-gold/40"
+                        : "text-fire-orange/50 border-fire-orange/20 hover:text-fire-orange hover:border-fire-orange/40"
                         }`}
                 >
                     Switch to {isRightNow ? "Workbook" : "Right Now"}
@@ -87,32 +89,35 @@ function AppNav() {
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
     return (
-        <ModeProvider>
-            <div className="min-h-screen bg-obsidian text-white relative overflow-hidden">
-                {/* Subtle background texture */}
-                <div className="fixed inset-0 pointer-events-none z-0">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black" />
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-aged-gold/[0.02] rounded-full blur-[200px]" />
+        <AudioPlayerProvider>
+            <ModeProvider>
+                <div className="min-h-screen bg-obsidian text-white relative overflow-hidden">
+                    {/* Subtle background texture */}
+                    <div className="fixed inset-0 pointer-events-none z-0">
+                        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black" />
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-aged-gold/[0.02] rounded-full blur-[200px]" />
+                    </div>
+
+                    {/* Minimal top bar */}
+                    <AppNav />
+
+                    {/* Persistent mode indicator */}
+                    <ModeIndicator />
+
+                    {/* Page content — extra top padding for nav (56px) + mode strip (32px) */}
+                    <main className="relative z-10 pt-[86px] min-h-screen pb-32">{children}</main>
+
+                    {/* Breathing shortcut - fixed bottom right */}
+                    <Link
+                        href="/app"
+                        className="fixed bottom-24 md:bottom-20 right-6 z-40 w-12 h-12 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center hover:border-spirit-blue/50 transition-all group shadow-lg"
+                        title="Breathe"
+                    >
+                        <Wind className="w-5 h-5 text-gray-500 group-hover:text-spirit-blue transition-colors" />
+                    </Link>
                 </div>
-
-                {/* Minimal top bar */}
-                <AppNav />
-
-                {/* Persistent mode indicator */}
-                <ModeIndicator />
-
-                {/* Page content — extra top padding for nav (56px) + mode strip (32px) */}
-                <main className="relative z-10 pt-[86px] min-h-screen">{children}</main>
-
-                {/* Breathing shortcut - fixed bottom right */}
-                <Link
-                    href="/app"
-                    className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center hover:border-spirit-blue/50 transition-all group"
-                    title="Breathe"
-                >
-                    <Wind className="w-5 h-5 text-gray-500 group-hover:text-spirit-blue transition-colors" />
-                </Link>
-            </div>
-        </ModeProvider>
+                <GlobalAudioPlayer />
+            </ModeProvider>
+        </AudioPlayerProvider>
     );
 }

@@ -9,6 +9,8 @@ import StepGuide from "@/components/app/StepGuide";
 import { getExerciseById } from "@/data/exercises";
 import { getAnimalById } from "@/data/animals";
 import { useAppMode } from "@/components/app/ModeProvider";
+import { useAudioPlayer } from "@/components/app/AudioPlayerProvider";
+import { Play } from "lucide-react";
 
 const edgeBadgeColors: Record<string, string> = {
     spirit: "bg-amber-400/15 text-amber-400 border-amber-400/30",
@@ -36,6 +38,10 @@ function ExerciseContent() {
     const modeUrlParam = searchParams.get("mode") as "journey" | "rightnow" | null;
 
     const { mode: contextMode, setMode: setContextMode } = useAppMode();
+    const { playTrack, currentTrack, isPlaying, duration, currentTime } = useAudioPlayer();
+
+    const [autoGuided, setAutoGuided] = useState<boolean | null>(null);
+    const [introFinished, setIntroFinished] = useState(false);
 
     // URL param seeds context on mount only
     useEffect(() => {
@@ -46,6 +52,33 @@ function ExerciseContent() {
     }, []); // only on mount
 
     const isRightNow = contextMode === "rightnow";
+
+    // Track when the intro finishes in Auto-Guided mode
+    useEffect(() => {
+        if (
+            autoGuided &&
+            currentTrack?.url === exercise?.rightNowIntroAudio &&
+            !isPlaying &&
+            duration > 0 &&
+            currentTime >= duration - 0.5
+        ) {
+            setIntroFinished(true);
+        }
+    }, [autoGuided, currentTrack, isPlaying, duration, currentTime, exercise]);
+
+    const handleSelectGuidedMode = (guided: boolean) => {
+        setAutoGuided(guided);
+        if (guided && exercise?.rightNowIntroAudio) {
+            playTrack({
+                title: exercise.title + " (Intro)",
+                subtitle: "Right Now Support",
+                url: exercise.rightNowIntroAudio!
+            });
+        } else if (guided) {
+            // If there's no intro audio, instantly finish the intro phase
+            setIntroFinished(true);
+        }
+    };
 
     if (!exercise) {
         return (
@@ -192,21 +225,71 @@ function ExerciseContent() {
                     : "bg-black/30 border-white/5"
                     }`}
             >
-                <p className="text-gray-400 font-tahoma text-sm leading-relaxed">
-                    {description}
-                </p>
+                <div className="flex flex-col gap-4">
+                    <p className="text-gray-400 font-tahoma text-sm leading-relaxed">
+                        {description}
+                    </p>
+
+                    {/* Audio Intro Play Button for Manual Mode */}
+                    {isRightNow && autoGuided === false && exercise.rightNowIntroAudio && (
+                        <button
+                            onClick={() => playTrack({
+                                title: exercise.title + " (Intro)",
+                                subtitle: "Right Now Support",
+                                url: exercise.rightNowIntroAudio!
+                            })}
+                            className="flex items-center gap-2 self-start px-4 py-2 mt-2 bg-fire-orange/10 border border-fire-orange/30 text-fire-orange hover:bg-fire-orange/20 rounded-md text-xs font-mono uppercase tracking-wider transition-colors"
+                        >
+                            <Play className="w-4 h-4" />
+                            {currentTrack?.url === exercise.rightNowIntroAudio ? "Playing Intro..." : "Listen to Intro"}
+                        </button>
+                    )}
+                </div>
             </motion.div>
+
+            {/* Sub-mode Selection for Right Now */}
+            {isRightNow && autoGuided === null && (
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-10 p-6 rounded-xl border border-fire-orange/30 bg-fire-orange/5 text-center"
+                >
+                    <h3 className="font-cinzel text-xl text-white mb-2">How would you like to proceed?</h3>
+                    <p className="text-gray-400 text-sm font-tahoma mb-6 max-w-md mx-auto">
+                        Choose auto-guided to have the steps and reflection timers play automatically, or manual to click through at your own pace.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button
+                            onClick={() => handleSelectGuidedMode(true)}
+                            className="px-6 py-3 bg-fire-orange/20 border border-fire-orange/50 text-fire-orange hover:bg-fire-orange/30 rounded text-sm font-mono uppercase tracking-wider transition-colors"
+                        >
+                            Auto-Guided Sequence
+                        </button>
+                        <button
+                            onClick={() => handleSelectGuidedMode(false)}
+                            className="px-6 py-3 bg-white/5 border border-white/20 text-white hover:bg-white/10 rounded text-sm font-mono uppercase tracking-wider transition-colors"
+                        >
+                            Manual Steps
+                        </button>
+                    </div>
+                </motion.div>
+            )}
 
             {/* Divider */}
             <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-10" />
 
-            {/* Step guide */}
-            <StepGuide
-                steps={exercise.steps}
-                exerciseId={exercise.id}
-                mode={contextMode}
-                onComplete={() => setCompleted(true)}
-            />
+            {/* Step guide - Only show if not in Right Now mode, OR if a sub-mode is selected */}
+            {(!isRightNow || autoGuided !== null) && (
+                <StepGuide
+                    steps={exercise.steps}
+                    exerciseId={exercise.id}
+                    exerciseTitle={exercise.title}
+                    mode={contextMode}
+                    autoGuided={autoGuided || false}
+                    introFinished={introFinished}
+                    onComplete={() => setCompleted(true)}
+                />
+            )}
         </div>
     );
 }

@@ -1,43 +1,111 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import type { ExerciseStep } from "@/data/exercises";
 import JournalPrompt from "./JournalPrompt";
+import { useAudioPlayer } from "./AudioPlayerProvider";
 
 interface StepGuideProps {
     steps: ExerciseStep[];
     exerciseId: string;
+    exerciseTitle?: string;
     mode?: "journey" | "rightnow" | null;
+    autoGuided?: boolean;
+    introFinished?: boolean;
     onComplete?: () => void;
 }
 
-export default function StepGuide({ steps, exerciseId, mode, onComplete }: StepGuideProps) {
+export default function StepGuide({ steps, exerciseId, exerciseTitle = "Exercise", mode, autoGuided, introFinished, onComplete }: StepGuideProps) {
     const [currentStep, setCurrentStep] = useState(0);
     const [direction, setDirection] = useState(0);
+    const { playTrack, currentTrack, isPlaying, duration, currentTime } = useAudioPlayer();
+
+    // Sequence state for Auto-Guided mode
+    const [seqState, setSeqState] = useState<"idle" | "playing-step" | "countdown">("idle");
+    const [timeRemaining, setTimeRemaining] = useState(30);
+    const DEFAULT_COUNTDOWN = 30;
 
     const step = steps[currentStep];
     const isRightNow = mode === "rightnow";
     const displayInstruction = (isRightNow && step.rightNowInstruction) || step.instruction;
     const displayPrompt = (isRightNow && step.rightNowPrompt) || step.prompt;
+    const displayAudio = isRightNow ? step.rightNowAudio : undefined;
+
     const isLast = currentStep === steps.length - 1;
     const isFirst = currentStep === 0;
 
-    const goNext = () => {
+    const goNext = useCallback(() => {
         if (isLast) {
             onComplete?.();
             return;
         }
         setDirection(1);
         setCurrentStep((s) => s + 1);
-    };
+    }, [isLast, onComplete]);
 
-    const goPrev = () => {
+    const goPrev = useCallback(() => {
         if (isFirst) return;
         setDirection(-1);
         setCurrentStep((s) => s - 1);
-    };
+    }, [isFirst]);
+
+    // --- AUTO-GUIDED LOGIC ---
+
+    // 1. Kick off sequence when Intro finishes
+    useEffect(() => {
+        if (autoGuided && introFinished && seqState === "idle" && currentStep === 0) {
+            setTimeout(() => setSeqState("playing-step"), 0);
+        }
+    }, [autoGuided, introFinished, seqState, currentStep]);
+
+    // 2. Play audio and watch for completion
+    useEffect(() => {
+        if (autoGuided && seqState === "playing-step") {
+            if (displayAudio && currentTrack?.url !== displayAudio) {
+                // Start playing this step's audio
+                playTrack({
+                    title: `${exerciseTitle} - Step ${currentStep + 1}`,
+                    subtitle: "Right Now Support",
+                    url: displayAudio
+                });
+            }
+
+            // Check if track ended
+            if (displayAudio && currentTrack?.url === displayAudio && !isPlaying && duration > 0 && currentTime >= duration - 0.5) {
+                setTimeout(() => {
+                    setSeqState("countdown");
+                    setTimeRemaining(DEFAULT_COUNTDOWN);
+                }, 0);
+            } else if (!displayAudio) {
+                // If there's no audio file for this step, jump directly to countdown
+                setTimeout(() => {
+                    setSeqState("countdown");
+                    setTimeRemaining(DEFAULT_COUNTDOWN);
+                }, 0);
+            }
+        }
+    }, [autoGuided, seqState, displayAudio, currentTrack, isPlaying, duration, currentTime, currentStep, exerciseTitle, playTrack]);
+
+    // 3. Contemplation timer
+    useEffect(() => {
+        if (autoGuided && seqState === "countdown") {
+            if (timeRemaining <= 0) {
+                if (isLast) {
+                    onComplete?.();
+                } else {
+                    setTimeout(() => {
+                        goNext();
+                        setSeqState("playing-step");
+                    }, 0);
+                }
+            } else {
+                const timer = setTimeout(() => setTimeRemaining(t => t - 1), 1000);
+                return () => clearTimeout(timer);
+            }
+        }
+    }, [autoGuided, seqState, timeRemaining, isLast, onComplete, goNext]);
 
     return (
         <div className="w-full max-w-2xl mx-auto">
@@ -73,9 +141,51 @@ export default function StepGuide({ steps, exerciseId, mode, onComplete }: StepG
                     className="min-h-[280px]"
                 >
                     {/* Instruction */}
-                    <h3 className="font-cinzel text-xl md:text-2xl text-white leading-relaxed mb-6">
-                        {displayInstruction}
-                    </h3>
+                    <div className="mb-6 space-y-4">
+                        <h3 className="font-cinzel text-xl md:text-2xl text-white leading-relaxed">
+                            {displayInstruction}
+                        </h3>
+
+                        {/* Audio Step Play Button for Right Now Mode - Manual Override */}
+                        {isRightNow && displayAudio && (!autoGuided || seqState !== "playing-step") && (
+                            <button
+                                onClick={() => {
+                                    if (autoGuided) {
+                                        setSeqState("playing-step");
+                                    }
+                                    playTrack({
+                                        title: `${exerciseTitle} - Step ${currentStep + 1}`,
+                                        subtitle: "Right Now Support",
+                                        url: displayAudio
+                                    });
+                                }}
+                                className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/20 hover:bg-white/10 text-white rounded-md text-xs font-mono uppercase tracking-wider transition-colors"
+                            >
+                                <Play className="w-4 h-4" />
+                                {currentTrack?.url === displayAudio ? "Playing Step..." : "Listen to Step"}
+                            </button>
+                        )}
+                    </div>
+
+                    {/* Contemplation Countdown UI */}
+                    {autoGuided && seqState === "countdown" && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="mt-6 mb-8 p-5 rounded-xl border border-spirit-blue/30 bg-spirit-blue/5 flex flex-col sm:flex-row items-center justify-between gap-4"
+                        >
+                            <div className="flex flex-col text-center sm:text-left">
+                                <span className="text-sm font-cinzel text-spirit-blue mb-1">Contemplation Time</span>
+                                <span className="text-xs font-mono text-gray-400">Continuing to next step in {timeRemaining}s...</span>
+                            </div>
+                            <button
+                                onClick={() => setTimeRemaining(0)}
+                                className="px-5 py-2 bg-spirit-blue/20 text-spirit-blue hover:bg-spirit-blue/30 border border-spirit-blue/40 rounded text-xs uppercase tracking-wider font-mono transition-colors whitespace-nowrap"
+                            >
+                                I&apos;m Ready
+                            </button>
+                        </motion.div>
+                    )}
 
                     {/* Journal prompt */}
                     <JournalPrompt

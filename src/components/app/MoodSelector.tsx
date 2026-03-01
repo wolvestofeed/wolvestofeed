@@ -11,13 +11,6 @@ export default function MoodSelector({
 }) {
     return (
         <div className="w-full max-w-2xl mx-auto">
-            <h2 className="font-cinzel text-2xl md:text-3xl text-white/80 text-center mb-2">
-                What are you feeling?
-            </h2>
-            <p className="text-gray-500 text-sm text-center mb-8 font-tahoma">
-                No judgment. Name it so you can work with it.
-            </p>
-
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {moods.map((mood, i) => (
                     <motion.button

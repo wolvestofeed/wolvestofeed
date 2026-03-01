@@ -8,6 +8,7 @@ export interface ExerciseStep {
     duration?: number; // optional seconds for timed steps
     rightNowInstruction?: string; // crisis-framed instruction for Right Now mode
     rightNowPrompt?: string; // crisis-framed prompt for Right Now mode
+    rightNowAudio?: string; // path to audio file for this step in Right Now mode
 }
 
 export interface Exercise {
@@ -23,6 +24,7 @@ export interface Exercise {
     description: string;
     rightNowDescription: string; // crisis-framed "Right Now Support" language
     rightNowSubtitle?: string; // crisis-framed one-liner for Right Now mode
+    rightNowIntroAudio?: string; // path to the intro audio file for Right Now mode
     steps: ExerciseStep[];
 }
 
@@ -45,15 +47,16 @@ export const exercises: Exercise[] = [
             "Before diving into domain-specific work, answer these foundational questions to name where you are and what's generating your current reality.",
         rightNowDescription:
             "Something just happened: you snapped, shut down, overdrank, scrolled, or froze. Instead of hating yourself, this exercise walks backward from what you just did to the emotions, thoughts, and core belief underneath. It's a way to see the wiring clearly enough to change one part of the loop.",
+        rightNowIntroAudio: "/app-audio/exercises/core-inquiry/intro.wav",
         steps: [
-            { instruction: "Where am I on an Edge right now?", prompt: "Career deal about to close? Relationship deepening? Body recovering? Spiritual practice intensifying?" },
-            { instruction: "Is this an Edge of Greatness or Edge of Collapse?", prompt: "Greatness: Breakthrough feels close, high tension, optimism meets uncertainty.\nCollapse: Void opening, losing footing, momentum stalled, system breaking down." },
-            { instruction: "What is the 'lagging indicator' I'm experiencing?", prompt: "Unemployment, chronic pain, loneliness, financial stress, creative block?" },
-            { instruction: "What behaviors have been creating this reality?", prompt: "Overwork, people-pleasing, ignoring body signals, avoiding vulnerability, clinging to outdated goals?" },
-            { instruction: "What feelings drive those behaviors?", prompt: "Fear of failure, shame about not measuring up, grief over lost dreams, rage at injustice?" },
-            { instruction: "What thoughts generate those feelings?", prompt: "I'm not good enough. I should be farther along. My body is betraying me. I'll always be alone." },
-            { instruction: "What core belief sits underneath it all?", prompt: "I'm unworthy unless I succeed. Love is conditional. My value comes from achievement. Vulnerability is weakness." },
-            { instruction: "If I could pull one lever now — thinking, feeling, or body — which would have the most impact?", prompt: "Name the lever and why." },
+            { instruction: "Where am I on an Edge right now?", prompt: "Career deal about to close? Relationship deepening? Body recovering? Spiritual practice intensifying?", rightNowAudio: "/app-audio/exercises/core-inquiry/step-1.wav" },
+            { instruction: "Is this an Edge of Greatness or Edge of Collapse?", prompt: "Greatness: Breakthrough feels close, high tension, optimism meets uncertainty.\nCollapse: Void opening, losing footing, momentum stalled, system breaking down.", rightNowAudio: "/app-audio/exercises/core-inquiry/step-2.wav" },
+            { instruction: "What is the 'lagging indicator' I'm experiencing?", prompt: "Unemployment, chronic pain, loneliness, financial stress, creative block?", rightNowAudio: "/app-audio/exercises/core-inquiry/step-3.wav" },
+            { instruction: "What behaviors have been creating this reality?", prompt: "Overwork, people-pleasing, ignoring body signals, avoiding vulnerability, clinging to outdated goals?", rightNowAudio: "/app-audio/exercises/core-inquiry/step-4.wav" },
+            { instruction: "What feelings drive those behaviors?", prompt: "Fear of failure, shame about not measuring up, grief over lost dreams, rage at injustice?", rightNowAudio: "/app-audio/exercises/core-inquiry/step-5.wav" },
+            { instruction: "What thoughts generate those feelings?", prompt: "I'm not good enough. I should be farther along. My body is betraying me. I'll always be alone.", rightNowAudio: "/app-audio/exercises/core-inquiry/step-6.wav" },
+            { instruction: "What core belief sits underneath it all?", prompt: "I'm unworthy unless I succeed. Love is conditional. My value comes from achievement. Vulnerability is weakness.", rightNowAudio: "/app-audio/exercises/core-inquiry/step-7.wav" },
+            { instruction: "If I could pull one lever now — thinking, feeling, or body — which would have the most impact?", prompt: "Name the lever and why.", rightNowAudio: "/app-audio/exercises/core-inquiry/step-8.wav" },
         ],
     },
     {

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { BookOpen, Zap } from "lucide-react";
 import BreathingCircle from "@/components/app/BreathingCircle";
 import MoodSelector from "@/components/app/MoodSelector";
 import { useAppMode } from "@/components/app/ModeProvider";
+import { useAudioPlayer } from "@/components/app/AudioPlayerProvider";
 import type { Mood } from "@/data/moods";
 
 type Stage = "breathe" | "mode" | "mood";
@@ -17,9 +18,24 @@ export default function ChoicePointPage() {
     const [localMode, setLocalMode] = useState<AppMode | null>(null);
     const { setMode: setContextMode } = useAppMode();
     const router = useRouter();
+    const { playTrack } = useAudioPlayer();
+
+    // Reset scroll on stage change
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [stage]);
+
+    const triggerIntroAudio = () => {
+        playTrack({
+            title: "Choice Point Intro",
+            subtitle: "Welcome to the work",
+            url: "/app-audio/app-intro.wav"
+        });
+    };
 
     const handleBreathingComplete = () => {
         setStage("mode");
+        triggerIntroAudio();
     };
 
     const handleModeSelect = (selected: AppMode) => {
@@ -38,10 +54,11 @@ export default function ChoicePointPage() {
 
     const handleSkip = () => {
         setStage("mode");
+        triggerIntroAudio();
     };
 
     return (
-        <div className="min-h-[calc(100vh-3.5rem)] flex flex-col items-center justify-center px-6 py-12">
+        <div className={`min-h-[calc(100vh-3.5rem)] flex flex-col items-center px-6 py-12 ${stage !== "mood" ? "justify-center" : "justify-start pt-8 md:pt-12"}`}>
             <AnimatePresence mode="wait">
                 {/* ═══ STAGE 1: BREATHE ═══ */}
                 {stage === "breathe" && (
@@ -185,7 +202,7 @@ export default function ChoicePointPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="flex flex-col items-center gap-10 w-full"
+                        className="flex flex-col items-center gap-6 w-full"
                     >
                         <div className="text-center">
                             <motion.div
@@ -218,18 +235,6 @@ export default function ChoicePointPage() {
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            {/* Bottom quote */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 3, duration: 1 }}
-                className="absolute bottom-8 left-0 right-0 text-center px-8"
-            >
-                <p className="text-gray-700 text-xs font-tahoma italic max-w-md mx-auto">
-                    &ldquo;The persistent human is not forged on the edge of greatness — they are forged in the falling.&rdquo;
-                </p>
-            </motion.div>
         </div>
     );
 }

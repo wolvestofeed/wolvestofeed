@@ -22,7 +22,9 @@ export default function JournalPrompt({
 
     useEffect(() => {
         const stored = localStorage.getItem(getStorageKey(exerciseId, stepIndex));
-        if (stored) setText(stored);
+        if (stored) {
+            setTimeout(() => setText(stored), 0);
+        }
     }, [exerciseId, stepIndex]);
 
     const handleSave = () => {
@@ -54,8 +56,8 @@ export default function JournalPrompt({
                 <button
                     onClick={handleSave}
                     className={`px-4 py-1.5 text-xs font-tahoma uppercase tracking-wider rounded transition-all duration-300 ${saved
-                            ? "bg-emerald-500/20 text-emerald-400 border border-emerald-400/30"
-                            : "bg-white/5 text-gray-400 border border-white/10 hover:border-white/30 hover:text-white"
+                        ? "bg-emerald-500/20 text-emerald-400 border border-emerald-400/30"
+                        : "bg-white/5 text-gray-400 border border-white/10 hover:border-white/30 hover:text-white"
                         }`}
                 >
                     {saved ? "✓ Saved" : "Save"}
