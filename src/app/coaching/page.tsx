@@ -3,13 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import GoogleFormEmbed from "@/components/GoogleFormEmbed";
 import CheckoutButton from "@/components/CheckoutButton";
 
 export default function CoachingPage() {
     const [showBrianBio, setShowBrianBio] = useState(false);
-    const [showJoshinBio, setShowJoshinBio] = useState(false);
+
     const [joshinHover, setJoshinHover] = useState(false);
 
     const services = [
@@ -61,28 +61,7 @@ export default function CoachingPage() {
                 {/* The Coaches Section */}
                 <div className="mb-24 space-y-24">
 
-                    {/* Coach 1: Brian Winters */}
-                    <div className="py-16 border-y border-white/5 bg-black/20 flex flex-col md:grid md:grid-cols-12 gap-12 items-center md:items-start p-8 md:p-12 rounded-2xl relative overflow-hidden group">
-                        <div className="md:col-span-4 flex flex-col items-center md:items-start">
-                            <div className="relative shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-shadow-red transition-all duration-700 mb-8">
-                                <Image src="https://placehold.co/400x400/1a1a1a/ff4d00.png?text=SHADOW" alt="Brian Winters" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
-                            </div>
-                            <h3 className="font-cinzel text-3xl text-shadow-red mb-2 uppercase tracking-widest text-center md:text-left">Brian Winters</h3>
-                            <div className="text-xs text-gray-500 uppercase tracking-[0.2em] mb-4 font-mono text-center md:text-left">Expertise: Yoga, Kundalini, Identity, Meditation, Healing Qigong</div>
-                            <p className="font-tahoma text-gray-400 text-sm leading-relaxed text-center md:text-left italic">
-                                A specialist in the darker terrains of the psyche. Helping you navigate the smoke and reclaim the lost fragments of your true self.
-                            </p>
-                        </div>
-
-                        <div className="md:col-span-8 flex flex-col justify-center">
-                            <h4 className="font-cinzel text-xl text-white/40 uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Pack Wolf</h4>
-                            <p className="font-tahoma text-gray-400 text-base leading-relaxed">
-                                Biography coming soon. Brian&apos;s approach to coaching integrates deep physical discipline with contemplative inquiry, providing a path for those ready to face the shadow and integrate their full story.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Coach 2: Joshin Robert Bogatin */}
+                    {/* Coach 1: Joshin Robert Bogatin (always open) */}
                     <div className="py-16 border-y border-white/5 bg-black/20 flex flex-col md:grid md:grid-cols-12 gap-12 items-center md:items-start p-8 md:p-12 rounded-2xl relative overflow-hidden group">
                         <div className="md:col-span-4 flex flex-col items-center md:items-start">
                             {/* Square container – larger than the circle, no clipping so PNG transparency "breaks out" */}
@@ -125,6 +104,53 @@ export default function CoachingPage() {
                                 Joshin is a lifelong entrepreneur, systems designer, martial artist, and student of Zen and contemplative practices. He spent three decades building values-driven small businesses and nonprofit organizations in service of human wellness, sustainability and community. Drawing from his own boom-and-bust cycles, he writes and coaches to offer a radically honest look at how to remain persistent and awake regardless of the outcome of your efforts. Joshin lives in the remote Colorado mountains with his dog, where he continues to practice, hike the high-country, and support other persistent humans in finding meaning beyond conventional success.
                             </p>
                         </div>
+                    </div>
+
+                    {/* Coach 2: Brian Winters (collapsible) */}
+                    <div className="rounded-2xl border border-white/5 bg-black/20 overflow-hidden">
+                        <button
+                            onClick={() => setShowBrianBio(!showBrianBio)}
+                            className="w-full flex items-center justify-between p-8 md:p-12 cursor-pointer hover:bg-white/[0.02] transition-colors"
+                        >
+                            <h3 className="font-cinzel text-3xl text-shadow-red uppercase tracking-widest">Brian Winters</h3>
+                            <motion.div
+                                animate={{ rotate: showBrianBio ? 180 : 0 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <ChevronDown className="w-6 h-6 text-shadow-red" />
+                            </motion.div>
+                        </button>
+
+                        <AnimatePresence initial={false}>
+                            {showBrianBio && (
+                                <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="flex flex-col md:grid md:grid-cols-12 gap-12 items-center md:items-start px-8 md:px-12 pb-12">
+                                        <div className="md:col-span-4 flex flex-col items-center md:items-start">
+                                            <div className="relative shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-white/10 hover:border-shadow-red transition-all duration-700 mb-8">
+                                                <Image src="https://placehold.co/400x400/1a1a1a/ff4d00.png?text=SHADOW" alt="Brian Winters" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                                            </div>
+                                            <div className="text-xs text-gray-500 uppercase tracking-[0.2em] mb-4 font-mono text-center md:text-left">Expertise: Yoga, Kundalini, Identity, Meditation, Healing Qigong</div>
+                                            <p className="font-tahoma text-gray-400 text-sm leading-relaxed text-center md:text-left italic">
+                                                A specialist in the darker terrains of the psyche. Helping you navigate the smoke and reclaim the lost fragments of your true self.
+                                            </p>
+                                        </div>
+
+                                        <div className="md:col-span-8 flex flex-col justify-center">
+                                            <h4 className="font-cinzel text-xl text-white/40 uppercase tracking-widest mb-6 border-b border-white/10 pb-2">Pack Wolf</h4>
+                                            <p className="font-tahoma text-gray-400 text-base leading-relaxed">
+                                                Biography coming soon. Brian&apos;s approach to coaching integrates deep physical discipline with contemplative inquiry, providing a path for those ready to face the shadow and integrate their full story.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
 
                 </div>

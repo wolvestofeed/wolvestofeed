@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cinzel } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body
         className={`${cinzel.variable} bg-obsidian text-white antialiased flex flex-col min-h-screen`}
       >
+        <GoogleAnalytics />
         <Navbar />
         <main className="flex-grow pt-20">
           {children}
