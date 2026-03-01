@@ -6,6 +6,9 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
     const pathname = usePathname();
 
+    // Hide on /app routes (app has its own nav)
+    if (pathname.startsWith("/app")) return null;
+
     const navLinks = [
         { label: "Home", href: "/" },
         { label: "Podcast", href: "/podcast" },
@@ -13,6 +16,7 @@ export default function Navbar() {
         { label: "Coaching", href: "/coaching" },
         { label: "Publishing", href: "/publishing" },
         { label: "Contact", href: "/contact" },
+        { label: "Choice Point", href: "/app", special: true },
     ];
 
     return (
@@ -30,11 +34,14 @@ export default function Navbar() {
                 <div className="flex items-center gap-8 lg:gap-12 font-tahoma text-[11px] lg:text-xs uppercase tracking-[0.2em] shrink-0">
                     {navLinks.map((link) => {
                         const isActive = pathname === link.href;
+                        const isSpecial = 'special' in link && link.special;
                         return (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`transition-colors hover:text-fire-orange ${isActive ? "text-fire-orange font-bold" : "text-white/70"
+                                className={`transition-colors ${isSpecial
+                                        ? "text-fire-orange hover:text-aged-gold ember-effect"
+                                        : `hover:text-fire-orange ${isActive ? "text-fire-orange font-bold" : "text-white/70"}`
                                     }`}
                             >
                                 {link.label}

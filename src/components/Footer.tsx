@@ -1,11 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 export default function Footer() {
+    const pathname = usePathname();
     const [email, setEmail] = useState("");
     const [submitted, setSubmitted] = useState(false);
+
+    // Hide on /app routes (app has its own layout)
+    if (pathname.startsWith("/app")) return null;
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
