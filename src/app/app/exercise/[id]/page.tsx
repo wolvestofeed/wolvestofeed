@@ -57,7 +57,7 @@ function ExerciseContent() {
     useEffect(() => {
         if (
             autoGuided &&
-            currentTrack?.url === exercise?.rightNowIntroAudio &&
+            currentTrack?.title === exercise?.title + " (Intro)" &&
             !isPlaying &&
             duration > 0 &&
             currentTime >= duration - 0.5

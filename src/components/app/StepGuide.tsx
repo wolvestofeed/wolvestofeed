@@ -62,18 +62,20 @@ export default function StepGuide({ steps, exerciseId, exerciseTitle = "Exercise
 
     // 2. Play audio and watch for completion
     useEffect(() => {
+        const stepTitle = `${exerciseTitle} - Step ${currentStep + 1}`;
+
         if (autoGuided && seqState === "playing-step") {
-            if (displayAudio && currentTrack?.url !== displayAudio) {
+            if (displayAudio && currentTrack?.title !== stepTitle) {
                 // Start playing this step's audio
                 playTrack({
-                    title: `${exerciseTitle} - Step ${currentStep + 1}`,
+                    title: stepTitle,
                     subtitle: "Right Now Support",
                     url: displayAudio
                 });
             }
 
             // Check if track ended
-            if (displayAudio && currentTrack?.url === displayAudio && !isPlaying && duration > 0 && currentTime >= duration - 0.5) {
+            if (displayAudio && currentTrack?.title === stepTitle && !isPlaying && duration > 0 && currentTime >= duration - 0.5) {
                 setTimeout(() => {
                     setSeqState("countdown");
                     setTimeRemaining(DEFAULT_COUNTDOWN);

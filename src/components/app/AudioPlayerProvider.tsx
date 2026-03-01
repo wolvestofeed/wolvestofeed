@@ -67,10 +67,15 @@ export function AudioPlayerProvider({ children }: { children: React.ReactNode })
     }, [currentTrack, isPlaying]);
 
     const playTrack = (track: AudioTrack) => {
-        // If it's the same track and paused, just resume
+        // If it's the same track URL, we might just be resuming or replaying
         if (currentTrack?.url === track.url) {
+            if (audioRef.current && audioRef.current.currentTime >= (audioRef.current.duration || 0) - 0.5) {
+                audioRef.current.currentTime = 0;
+                setCurrentTime(0);
+            }
+            setCurrentTrack(track); // Update title/subtitle in case they changed
             setIsPlaying(true);
-            audioRef.current?.play();
+            audioRef.current?.play().catch(e => console.error("Audio playback failed", e));
             return;
         }
 
