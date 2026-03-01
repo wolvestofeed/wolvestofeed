@@ -26,11 +26,12 @@ export default function ChoicePointPage() {
     }, [stage]);
 
     const triggerIntroAudio = () => {
+        // Double check we haven't already transitioned to a new track like an exercise!
         playTrack({
             title: "Choice Point Intro",
             subtitle: "Welcome to the work",
             url: "/app-audio/app-intro.wav"
-        });
+        }, true); // pass true for "doNotOverride"
     };
 
     const handleBreathingComplete = () => {

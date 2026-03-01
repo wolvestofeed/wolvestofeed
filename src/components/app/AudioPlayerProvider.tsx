@@ -13,7 +13,7 @@ interface AudioPlayerContextType {
     isPlaying: boolean;
     duration: number;
     currentTime: number;
-    playTrack: (track: AudioTrack) => void;
+    playTrack: (track: AudioTrack, doNotOverride?: boolean) => void;
     togglePlayPause: () => void;
     seekTo: (time: number) => void;
     clearTrack: () => void;
@@ -66,7 +66,12 @@ export function AudioPlayerProvider({ children }: { children: React.ReactNode })
         }
     }, [currentTrack, isPlaying]);
 
-    const playTrack = (track: AudioTrack) => {
+    const playTrack = (track: AudioTrack, doNotOverride?: boolean) => {
+        // If we want to safely trigger a track without cutting off an existing different track
+        if (doNotOverride && currentTrack && currentTrack.url !== track.url) {
+            return;
+        }
+
         // If it's the same track URL, we might just be resuming or replaying
         if (currentTrack?.url === track.url) {
             if (audioRef.current && audioRef.current.currentTime >= (audioRef.current.duration || 0) - 0.5) {
