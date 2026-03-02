@@ -11,12 +11,12 @@ export default function Navbar() {
 
     const navLinks = [
         { label: "Home", href: "/" },
-        { label: "Podcast", href: "/podcast" },
-        { label: "The Pack", href: "/the-pack" },
-        { label: "Coaching", href: "/coaching" },
         { label: "Publishing", href: "/publishing" },
-        { label: "Contact", href: "/contact" },
+        { label: "Coaching", href: "/coaching" },
         { label: "Fireline", href: "/app", special: true },
+        { label: "The Pack", href: "/the-pack" },
+        { label: "Podcast", href: "/podcast" },
+        { label: "Contact", href: "/contact" },
     ];
 
     return (
