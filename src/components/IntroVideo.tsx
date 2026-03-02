@@ -65,7 +65,7 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
             {!isFading ? (
                 <motion.div
                     key="intro-video"
-                    className="relative w-full min-h-[calc(100vh-80px)] bg-black flex items-center justify-center overflow-hidden"
+                    className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden"
                     exit={{ opacity: 0 }}
                     transition={{ duration: 1, ease: "easeInOut" }}
                     onAnimationComplete={(definition) => {
@@ -82,7 +82,7 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
                         preload="auto"
                         onLoadedData={handleLoadedData}
                         onEnded={handleVideoEnd}
-                        className="w-full h-full absolute inset-0 object-cover"
+                        className="w-full h-full absolute inset-0 object-contain"
                     >
                         <source
                             src="/wtf_intro_15sec_spirit_howl-2.mp4"
@@ -111,7 +111,7 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
             ) : (
                 <motion.div
                     key="fade-black"
-                    className="w-full min-h-[calc(100vh-80px)] bg-black"
+                    className="w-full h-screen bg-black"
                     initial={{ opacity: 1 }}
                     animate={{ opacity: 0 }}
                     transition={{ duration: 1.2, ease: "easeInOut" }}

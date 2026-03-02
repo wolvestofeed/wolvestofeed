@@ -47,12 +47,12 @@ export default function PublishingPage() {
             <div className="max-w-6xl mx-auto px-8">
 
                 {/* Brand Header Section - Editorial Overlay Design */}
-                <section className="relative w-full h-48 md:h-56 mb-16 flex items-center justify-end overflow-hidden">
+                <section className="relative w-full min-h-[350px] md:h-56 mb-16 flex flex-col md:flex-row items-center justify-center md:justify-end overflow-hidden">
                     {/* Background Glow */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
 
-                    {/* Logo Watermark (Background Left) */}
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 opacity-100 pointer-events-none">
+                    {/* Logo Watermark (Background Left on desktop, Top on mobile) */}
+                    <div className="relative md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 opacity-100 pointer-events-none mb-4 md:mb-0">
                         <Image
                             src="/WTF Pub Mark black.png"
                             alt="Wolves To Feed Publishing Imprint Background"
@@ -61,12 +61,12 @@ export default function PublishingPage() {
                         />
                     </div>
 
-                    {/* Foreground Text Block (Right Aligned) */}
-                    <div className="relative z-10 w-full md:w-3/4 lg:w-2/3 text-right">
-                        <h1 className="font-cinzel text-3xl md:text-5xl lg:text-6xl text-white mb-4 tracking-tighter drop-shadow-lg">
+                    {/* Foreground Text Block (Right Aligned on desktop, Centered on mobile) */}
+                    <div className="relative z-10 w-full md:w-3/4 lg:w-2/3 text-center md:text-right px-4 md:px-0">
+                        <h1 className="font-cinzel text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 tracking-tighter drop-shadow-lg">
                             Wolves To Feed Publishing
                         </h1>
-                        <p className="font-tahoma text-lg md:text-xl text-gray-300 italic max-w-2xl ml-auto border-r-2 border-aged-gold/30 pr-4">
+                        <p className="font-tahoma text-base sm:text-lg md:text-xl text-gray-300 italic max-w-2xl mx-auto md:ml-auto md:border-r-2 md:border-aged-gold/30 md:pr-4">
                             The story you tell yourself is the territory you inhabit. We publish the maps for those brave enough to redraw their borders.
                         </p>
                     </div>
