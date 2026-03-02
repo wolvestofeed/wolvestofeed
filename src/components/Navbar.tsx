@@ -13,7 +13,7 @@ export default function Navbar() {
         { label: "Home", href: "/" },
         { label: "Publishing", href: "/publishing" },
         { label: "Coaching", href: "/coaching" },
-        { label: "Fireline", href: "/app", special: true },
+        { label: "Fireline", href: "/app" },
         { label: "The Pack", href: "/the-pack" },
         { label: "Podcast", href: "/podcast" },
         { label: "Contact", href: "/contact" },

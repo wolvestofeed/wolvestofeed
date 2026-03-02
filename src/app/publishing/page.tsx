@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Flame, Map } from "lucide-react";
 import CheckoutButton from "@/components/CheckoutButton";
+import Link from "next/link";
 
 export default function PublishingPage() {
     const [activeBook, setActiveBook] = useState<"book1" | "book2" | "book3">("book1");
@@ -44,29 +46,34 @@ export default function PublishingPage() {
         <div className="min-h-screen bg-obsidian text-white pt-12 pb-24">
             <div className="max-w-6xl mx-auto px-8">
 
-                {/* Brand Header Section */}
-                <section className="mb-16 flex flex-col items-center text-center">
-                    <div className="relative w-48 h-48 mb-8 opacity-90 hover:opacity-100 transition-opacity">
+                {/* Brand Header Section - Editorial Overlay Design */}
+                <section className="relative w-full h-48 md:h-56 mb-16 flex items-center justify-end overflow-hidden">
+                    {/* Background Glow */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
+
+                    {/* Logo Watermark (Background Left) */}
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 opacity-100 pointer-events-none">
                         <Image
-                            src="/WTF Pub Mark white.png"
-                            alt="Wolves To Feed Publishing Imprint"
+                            src="/WTF Pub Mark black.png"
+                            alt="Wolves To Feed Publishing Imprint Background"
                             fill
                             className="object-contain"
                         />
                     </div>
-                    <h1 className="font-cinzel text-4xl md:text-5xl lg:text-7xl text-white mb-8 tracking-tighter ember-effect">
-                        Wolves To Feed Publishing
-                    </h1>
-                    <div className="w-24 h-1 bg-gradient-to-r from-transparent via-aged-gold to-transparent mb-12"></div>
-                    <p className="font-tahoma text-xl md:text-2xl text-gray-400 max-w-4xl leading-relaxed italic">
-                        The story you tell yourself is the territory you inhabit. We publish the maps for those brave enough to redraw their borders.
-                    </p>
+
+                    {/* Foreground Text Block (Right Aligned) */}
+                    <div className="relative z-10 w-full md:w-3/4 lg:w-2/3 text-right">
+                        <h1 className="font-cinzel text-3xl md:text-5xl lg:text-6xl text-white mb-4 tracking-tighter drop-shadow-lg">
+                            Wolves To Feed Publishing
+                        </h1>
+                        <p className="font-tahoma text-lg md:text-xl text-gray-300 italic max-w-2xl ml-auto border-r-2 border-aged-gold/30 pr-4">
+                            The story you tell yourself is the territory you inhabit. We publish the maps for those brave enough to redraw their borders.
+                        </p>
+                    </div>
                 </section>
 
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-16" />
-
                 {/* Existing Library Header */}
-                <div className="text-center mb-20 max-w-3xl mx-auto">
+                <div className="text-left mb-20 max-w-3xl">
                     <h2 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-6 smoke-effect uppercase tracking-widest">The Library</h2>
                     <p className="font-tahoma text-xl text-gray-300 leading-relaxed">
                         Words are seeds. Plant them deeply. Explore our foundational texts designed to challenge your limits and guide you through the wilderness of the self.
@@ -174,6 +181,62 @@ export default function PublishingPage() {
 
                     </div>
                 </div>
+
+                {/* Fireline App Promotion Section */}
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mt-24 mb-16" />
+
+                <section className="relative px-8 py-16 bg-black/30 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-fire-orange/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+
+                    <div className="relative z-10 flex flex-col lg:flex-row gap-12 items-center">
+                        {/* Narrative Content */}
+                        <div className="w-full lg:w-5/12 text-center lg:text-left">
+                            <h2 className="font-cinzel text-3xl md:text-5xl text-aged-gold mb-6 uppercase tracking-wider smoke-effect">
+                                Wolves To Feed <br />
+                                <span className="text-fire-orange tracking-tighter ember-effect">Fireline</span>
+                            </h2>
+                            <p className="font-tahoma text-xl text-gray-300 md:text-2xl italic mb-6">
+                                The Digital Companion
+                            </p>
+                            <p className="font-tahoma text-base text-gray-400 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                                Words spark the flame, but action sustains it. Our physical texts provide the map, while the Fireline digital app provides the compass. Built for the critical moments when you face your edges in real time.
+                            </p>
+
+                            <Link href="/app">
+                                <button className="font-cinzel uppercase tracking-[0.2em] px-8 py-4 bg-transparent border-2 border-fire-orange/50 text-fire-orange hover:bg-fire-orange hover:text-black hover:border-fire-orange hover:shadow-[0_0_20px_rgba(226,88,34,0.4)] transition-all duration-300 rounded font-bold text-sm">
+                                    Enter Fireline
+                                </button>
+                            </Link>
+                        </div>
+
+                        {/* Two Modes Grid */}
+                        <div className="w-full lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                            {/* Firebreak Mode */}
+                            <div className="bg-black/50 border border-fire-orange/20 p-8 rounded-xl hover:border-fire-orange/50 transition-colors">
+                                <div className="p-3 bg-fire-orange/10 w-fit rounded-lg mb-6 border border-fire-orange/20">
+                                    <Flame className="w-8 h-8 text-fire-orange" />
+                                </div>
+                                <h3 className="font-cinzel text-2xl text-fire-orange mb-3">Firebreak</h3>
+                                <p className="font-tahoma text-sm text-gray-400 leading-relaxed">
+                                    Immediate, practical nervous system support. Choose between manual reading or immersive audio-guided exercises to regulate your system when the flames are rising.
+                                </p>
+                            </div>
+
+                            {/* Controlled Burn Mode */}
+                            <div className="bg-black/50 border border-aged-gold/20 p-8 rounded-xl hover:border-aged-gold/50 transition-colors">
+                                <div className="p-3 bg-aged-gold/10 w-fit rounded-lg mb-6 border border-aged-gold/20">
+                                    <Map className="w-8 h-8 text-aged-gold" />
+                                </div>
+                                <h3 className="font-cinzel text-2xl text-aged-gold mb-3">Controlled Burn</h3>
+                                <p className="font-tahoma text-sm text-gray-400 leading-relaxed">
+                                    The active digital workbook. A structured, ongoing journey to implement the philosophies of the text into daily habit and paradigm shifts.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
 
             </div>
         </div>

@@ -51,7 +51,10 @@ export default function PodcastPage() {
             <div className="pt-16 relative z-30">
                 <div className="max-w-7xl mx-auto px-8">
                     <div className="mb-12 text-center flex flex-col items-center">
-                        <h1 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-2 smoke-effect inline-block">Wolves to Feed Podcast</h1>
+                        <h1 className="font-cinzel text-5xl md:text-6xl text-aged-gold mb-2 smoke-effect inline-block">
+                            <span className="tracking-[0.1em]">Wolves To Feed</span> <br />
+                            Video Podcast
+                        </h1>
                         <h2 className="font-cinzel text-2xl md:text-3xl text-fire-orange mb-6 tracking-widest uppercase">The Practice Engine</h2>
 
                         {/* Decorative Gradient Line */}

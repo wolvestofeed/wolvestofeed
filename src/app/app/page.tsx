@@ -139,8 +139,8 @@ export default function ChoicePointPage() {
                     >
                         <div className="text-center">
                             <h1 className="font-cinzel text-2xl md:text-4xl text-white/90 mb-2">
-                                How can we support <br />
-                                you right now?
+                                How can your brothers <br />
+                                support you right now?
                             </h1>
                             <p className="text-gray-400 text-base font-tahoma max-w-md mx-auto">
                                 Two time frames, same tools. Choose what fits this moment.

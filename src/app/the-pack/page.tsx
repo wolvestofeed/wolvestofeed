@@ -45,7 +45,7 @@ export default function ThePackPage() {
     ];
 
     const partners = [
-        { name: "Name of Person", expertise: "Jungian Analysis", link: "#", image: "https://placehold.co/150x150/1a1a1a/D4AF37.png?text=ER" },
+        { name: "Name of Person", expertise: "Relationship Coach", link: "#", image: "https://placehold.co/150x150/1a1a1a/D4AF37.png?text=ER" },
         { name: "Name of Person", expertise: "Breathwork Facilitator", link: "#", image: "https://placehold.co/150x150/1a1a1a/D4AF37.png?text=MT" },
         { name: "Name of Person", expertise: "Ayurvedic Nutrition", link: "#", image: "https://placehold.co/150x150/1a1a1a/D4AF37.png?text=SD" },
     ];
