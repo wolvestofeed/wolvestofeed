@@ -28,7 +28,7 @@ function ModeIndicator() {
                         className={`text-[10px] font-mono uppercase tracking-[0.2em] ${isRightNow ? "text-fire-orange/70" : "text-aged-gold/50"
                             }`}
                     >
-                        {isRightNow ? "Right Now Support" : "Workbook Journey"}
+                        {isRightNow ? "Firebreak" : "Controlled Burn"}
                     </span>
                 </div>
 
@@ -40,7 +40,7 @@ function ModeIndicator() {
                         : "text-fire-orange/50 border-fire-orange/20 hover:text-fire-orange hover:border-fire-orange/40"
                         }`}
                 >
-                    Switch to {isRightNow ? "Workbook" : "Right Now"}
+                    Switch to {isRightNow ? "Controlled Burn" : "Firebreak"}
                 </button>
             </div>
         </div>
@@ -58,7 +58,7 @@ function AppNav() {
                     href="/app"
                     className="font-cinzel text-base text-aged-gold/80 hover:text-aged-gold transition-colors tracking-widest uppercase"
                 >
-                    Choice Point
+                    Wolves To Feed | Fireline
                 </Link>
 
                 <div className="flex items-center gap-4">

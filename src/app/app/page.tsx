@@ -76,7 +76,7 @@ export default function ChoicePointPage() {
     };
 
     return (
-        <div className={`min-h-[calc(100vh-3.5rem)] flex flex-col items-center px-6 py-12 ${stage !== "mood" ? "justify-center" : "justify-start pt-8 md:pt-12"}`}>
+        <div className="min-h-[calc(100vh-3.5rem)] flex flex-col items-center justify-start px-6 pt-12 pb-12 w-full">
             <AnimatePresence mode="wait">
                 {/* ═══ STAGE 1: BREATHE ═══ */}
                 {stage === "breathe" && (
@@ -95,7 +95,7 @@ export default function ChoicePointPage() {
                                 transition={{ delay: 0.3, duration: 0.8 }}
                                 className="font-cinzel text-3xl md:text-5xl text-white/90 mb-3"
                             >
-                                Take a breath.
+                                Take a breath
                             </motion.h1>
                             <motion.p
                                 initial={{ opacity: 0 }}
@@ -103,7 +103,7 @@ export default function ChoicePointPage() {
                                 transition={{ delay: 0.8, duration: 0.8 }}
                                 className="text-gray-400 text-base font-tahoma"
                             >
-                                You have a choice point.
+                                Now is a choice point.
                             </motion.p>
                         </div>
 
@@ -139,10 +139,11 @@ export default function ChoicePointPage() {
                     >
                         <div className="text-center">
                             <h1 className="font-cinzel text-2xl md:text-4xl text-white/90 mb-2">
-                                What brings you here?
+                                How can we support <br />
+                                you right now?
                             </h1>
                             <p className="text-gray-400 text-base font-tahoma max-w-md mx-auto">
-                                Two paths, same tools. Choose what fits this moment.
+                                Two time frames, same tools. Choose what fits this moment.
                             </p>
                         </div>
 
@@ -154,14 +155,17 @@ export default function ChoicePointPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.3, duration: 0.5 }}
                                 onClick={() => handleModeSelect("rightnow")}
-                                className="group relative text-left p-6 rounded-xl border border-fire-orange/20 bg-fire-orange/5 hover:border-fire-orange/50 hover:bg-fire-orange/10 transition-all duration-300 cursor-pointer"
+                                className="group relative flex flex-col items-start justify-start text-left p-6 rounded-xl border border-fire-orange/20 bg-fire-orange/5 hover:border-fire-orange/50 hover:bg-fire-orange/10 transition-all duration-300 cursor-pointer"
                             >
                                 <div className="absolute top-4 right-4">
                                     <Zap className="w-5 h-5 text-fire-orange/40 group-hover:text-fire-orange/70 transition-colors" />
                                 </div>
-                                <h2 className="font-cinzel text-xl text-fire-orange mb-2">
-                                    Right Now Support
+                                <h2 className="font-cinzel text-xl text-fire-orange mb-1">
+                                    Firebreak
                                 </h2>
+                                <p className="text-fire-orange/80 text-xs font-mono uppercase tracking-widest mb-3">
+                                    Right Now Support
+                                </p>
                                 <p className="text-gray-400 text-base font-tahoma leading-relaxed mb-4">
                                     Something just hit. You&apos;re activated, spun up, or shutting down.
                                 </p>
@@ -181,14 +185,17 @@ export default function ChoicePointPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.4, duration: 0.5 }}
                                 onClick={() => handleModeSelect("journey")}
-                                className="group relative text-left p-6 rounded-xl border border-aged-gold/20 bg-aged-gold/5 hover:border-aged-gold/50 hover:bg-aged-gold/10 transition-all duration-300 cursor-pointer"
+                                className="group relative flex flex-col items-start justify-start text-left p-6 rounded-xl border border-aged-gold/20 bg-aged-gold/5 hover:border-aged-gold/50 hover:bg-aged-gold/10 transition-all duration-300 cursor-pointer"
                             >
                                 <div className="absolute top-4 right-4">
                                     <BookOpen className="w-5 h-5 text-aged-gold/40 group-hover:text-aged-gold/70 transition-colors" />
                                 </div>
-                                <h2 className="font-cinzel text-xl text-aged-gold mb-2">
-                                    Workbook Journey
+                                <h2 className="font-cinzel text-xl text-aged-gold mb-1">
+                                    Controlled Burn
                                 </h2>
+                                <p className="text-aged-gold/80 text-xs font-mono uppercase tracking-widest mb-3">
+                                    Workbook Journey
+                                </p>
                                 <p className="text-gray-400 text-base font-tahoma leading-relaxed mb-4">
                                     Map your edges. Work the domains. Redesign the system.
                                 </p>

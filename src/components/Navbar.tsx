@@ -16,7 +16,7 @@ export default function Navbar() {
         { label: "Coaching", href: "/coaching" },
         { label: "Publishing", href: "/publishing" },
         { label: "Contact", href: "/contact" },
-        { label: "Choice Point", href: "/app", special: true },
+        { label: "Fireline", href: "/app", special: true },
     ];
 
     return (
@@ -40,8 +40,8 @@ export default function Navbar() {
                                 key={link.href}
                                 href={link.href}
                                 className={`transition-colors ${isSpecial
-                                        ? "text-fire-orange hover:text-aged-gold ember-effect"
-                                        : `hover:text-fire-orange ${isActive ? "text-fire-orange font-bold" : "text-white/70"}`
+                                    ? "text-fire-orange hover:text-aged-gold ember-effect"
+                                    : `hover:text-fire-orange ${isActive ? "text-fire-orange font-bold" : "text-white/70"}`
                                     }`}
                             >
                                 {link.label}

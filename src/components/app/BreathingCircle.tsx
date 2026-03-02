@@ -74,18 +74,7 @@ export default function BreathingCircle({
                     : "rgba(255, 255, 255, 0.1)";
 
     if (!isActive) {
-        return (
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="flex flex-col items-center gap-6"
-            >
-                <div className="text-aged-gold font-cinzel text-2xl">You are here.</div>
-                <p className="text-gray-400 text-base font-tahoma">
-                    {cycles} cycles complete. You have a choice point now.
-                </p>
-            </motion.div>
-        );
+        return null;
     }
 
     return (
@@ -138,10 +127,10 @@ export default function BreathingCircle({
                     <div
                         key={i}
                         className={`w-2 h-2 rounded-full transition-colors duration-500 ${i < cycleCount
-                                ? "bg-aged-gold"
-                                : i === cycleCount
-                                    ? "bg-spirit-blue"
-                                    : "bg-white/20"
+                            ? "bg-aged-gold"
+                            : i === cycleCount
+                                ? "bg-spirit-blue"
+                                : "bg-white/20"
                             }`}
                     />
                 ))}
