@@ -12,9 +12,9 @@ export default function ThePackPage() {
     const [campfireIndex, setCampfireIndex] = useState(0);
 
     const headerImages = [
-        "/header-gallery/man-rustic.png",
-        "/header-gallery/man-urban-v2.png",
-        "/header-gallery/man-family.png"
+        "/den-gallery/40s-white-man-backyard-craft.jpg",
+        "/den-gallery/50s-asian-man-office.jpg",
+        "/den-gallery/man-family.png"
     ];
 
     const campfireImages = [

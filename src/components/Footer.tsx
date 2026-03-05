@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
     const pathname = usePathname();
@@ -42,6 +43,20 @@ export default function Footer() {
                         {submitted ? "✓ Received" : "Subscribe"}
                     </button>
                 </form>
+            </div>
+
+            {/* Contact Card */}
+            <div className="max-w-xl mx-auto mb-10">
+                <Link href="/contact" className="block group">
+                    <div className="border border-white/10 rounded-xl px-6 py-5 bg-white/[0.03] hover:bg-white/[0.06] hover:border-aged-gold/30 transition-all duration-300 text-center">
+                        <h3 className="font-cinzel text-lg text-aged-gold uppercase tracking-[0.15em] mb-1 group-hover:text-fire-orange transition-colors">
+                            Contact Us
+                        </h3>
+                        <p className="font-tahoma text-sm text-white/40 group-hover:text-white/60 transition-colors">
+                            Reach out — we are listening
+                        </p>
+                    </div>
+                </Link>
             </div>
 
             {/* Existing footer row — untouched */}

@@ -32,12 +32,12 @@ export default function Navbar() {
 
     const navLinks = [
         { label: "Home", href: "/" },
-        { label: "Books", href: "/publishing" },
+        { label: "Publishing", href: "/publishing" },
         { label: "Coaching", href: "/coaching" },
         { label: "Fireline", href: "/app" },
         { label: "Pack", href: "/the-pack" },
         { label: "Podcast", href: "/podcast" },
-        { label: "Contact", href: "/contact" },
+
     ];
 
     return (
