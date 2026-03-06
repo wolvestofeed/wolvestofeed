@@ -3,19 +3,20 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { BookOpen, Zap } from "lucide-react";
+import { BookOpen, Zap, Compass, HeartHandshake } from "lucide-react";
 import BreathingCircle from "@/components/app/BreathingCircle";
 import MoodSelector from "@/components/app/MoodSelector";
 import { useAppMode } from "@/components/app/ModeProvider";
 import { useAudioPlayer } from "@/components/app/AudioPlayerProvider";
 import type { Mood } from "@/data/moods";
 
-type Stage = "breathe" | "mode" | "mood";
+type Stage = "breathe" | "mode" | "mood" | "approach";
 type AppMode = "journey" | "rightnow";
 
 export default function ChoicePointPage() {
     const [stage, setStage] = useState<Stage>("breathe");
     const [localMode, setLocalMode] = useState<AppMode | null>(null);
+    const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
     const { setMode: setContextMode } = useAppMode();
     const router = useRouter();
     const { playTrack, clearTrack, currentTrack } = useAudioPlayer();
@@ -67,7 +68,17 @@ export default function ChoicePointPage() {
     };
 
     const handleMoodSelect = (mood: Mood) => {
-        router.push(`/app/explore?mood=${mood.id}&mode=rightnow`);
+        setSelectedMood(mood);
+        setStage("approach");
+    };
+
+    const handleApproachSelect = (approach: "browse" | "coach") => {
+        if (!selectedMood) return;
+        if (approach === "browse") {
+            router.push(`/app/explore?mood=${selectedMood.id}&mode=rightnow`);
+        } else {
+            router.push(`/app/coach?mood=${selectedMood.id}`);
+        }
     };
 
     const handleSkip = () => {
@@ -249,6 +260,96 @@ export default function ChoicePointPage() {
                                 Browse All Exercises
                             </button>
                         </div>
+                    </motion.div>
+                )}
+
+                {/* ═══ STAGE 4: APPROACH (Firebreak fork) ═══ */}
+                {stage === "approach" && selectedMood && (
+                    <motion.div
+                        key="approach"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -30 }}
+                        transition={{ duration: 0.6 }}
+                        className="flex flex-col items-center gap-8 w-full max-w-2xl"
+                    >
+                        <div className="text-center">
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.1 }}
+                                className="inline-flex items-center gap-2 text-fire-orange/60 text-sm font-mono uppercase tracking-[0.3em] mb-3"
+                            >
+                                <span className="text-xl">{selectedMood.icon}</span>
+                                <span>Feeling {selectedMood.label}</span>
+                            </motion.div>
+                            <h1 className="font-cinzel text-2xl md:text-4xl text-white/90 mb-2">
+                                How do you want to work?
+                            </h1>
+                            <p className="text-gray-400 text-base font-tahoma max-w-md mx-auto">
+                                Choose your own exercise, or let the system pick the best sequence for how you&apos;re feeling.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full px-2">
+                            {/* I'll Choose */}
+                            <motion.button
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.3, duration: 0.5 }}
+                                onClick={() => handleApproachSelect("browse")}
+                                className="group relative flex flex-col items-start justify-start text-left p-6 rounded-xl border border-white/10 bg-white/[0.03] hover:border-fire-orange/30 hover:bg-fire-orange/5 transition-all duration-300 cursor-pointer"
+                            >
+                                <div className="absolute top-4 right-4">
+                                    <Compass className="w-5 h-5 text-gray-400/40 group-hover:text-fire-orange/60 transition-colors" />
+                                </div>
+                                <h2 className="font-cinzel text-xl text-white/90 mb-1">
+                                    I&apos;ll Choose
+                                </h2>
+                                <p className="text-gray-400/80 text-xs font-mono uppercase tracking-widest mb-3">
+                                    Browse &amp; Select
+                                </p>
+                                <p className="text-gray-400 text-base font-tahoma leading-relaxed">
+                                    Browse all exercises filtered by your mood and pick the one that resonates.
+                                </p>
+                                <div className="mt-4 text-fire-orange/50 text-sm font-mono uppercase tracking-widest group-hover:text-fire-orange/80 transition-colors">
+                                    Explore exercises →
+                                </div>
+                            </motion.button>
+
+                            {/* Coach Me */}
+                            <motion.button
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.4, duration: 0.5 }}
+                                onClick={() => handleApproachSelect("coach")}
+                                className="group relative flex flex-col items-start justify-start text-left p-6 rounded-xl border border-fire-orange/20 bg-fire-orange/5 hover:border-fire-orange/50 hover:bg-fire-orange/10 transition-all duration-300 cursor-pointer"
+                            >
+                                <div className="absolute top-4 right-4">
+                                    <HeartHandshake className="w-5 h-5 text-fire-orange/40 group-hover:text-fire-orange/70 transition-colors" />
+                                </div>
+                                <h2 className="font-cinzel text-xl text-fire-orange mb-1">
+                                    Coach Me
+                                </h2>
+                                <p className="text-fire-orange/80 text-xs font-mono uppercase tracking-widest mb-3">
+                                    Guided Sequence
+                                </p>
+                                <p className="text-gray-400 text-base font-tahoma leading-relaxed">
+                                    Let the system read your signal and pick the best exercises for what you&apos;re feeling right now.
+                                </p>
+                                <div className="mt-4 text-fire-orange/60 text-sm font-mono uppercase tracking-widest group-hover:text-fire-orange/90 transition-colors">
+                                    Get coached →
+                                </div>
+                            </motion.button>
+                        </div>
+
+                        {/* Back to mood */}
+                        <button
+                            onClick={() => setStage("mood")}
+                            className="text-gray-400 text-sm font-tahoma uppercase tracking-widest hover:text-white/60 transition-colors"
+                        >
+                            ← Change mood
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -256,20 +256,20 @@ function ExerciseContent() {
                 >
                     <h3 className="font-cinzel text-xl text-white mb-2">How would you like to proceed?</h3>
                     <p className="text-gray-400 text-base font-tahoma mb-6 max-w-md mx-auto">
-                        Choose auto-guided to have the steps and reflection timers play automatically, or manual to click through at your own pace.
+                        Choose guided audio to have the steps and reflection timers play automatically, or written journal to click through at your own pace.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button
                             onClick={() => handleSelectGuidedMode(true)}
                             className="px-6 py-3 bg-fire-orange/20 border border-fire-orange/50 text-fire-orange hover:bg-fire-orange/30 rounded text-base font-mono uppercase tracking-wider transition-colors"
                         >
-                            Auto-Guided Sequence
+                            Guided Audio
                         </button>
                         <button
                             onClick={() => handleSelectGuidedMode(false)}
                             className="px-6 py-3 bg-white/5 border border-white/20 text-white hover:bg-white/10 rounded text-base font-mono uppercase tracking-wider transition-colors"
                         >
-                            Manual Steps
+                            Written Journal
                         </button>
                     </div>
                 </motion.div>
